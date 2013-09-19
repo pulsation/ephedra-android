@@ -1,3 +1,3 @@
 android.Plugin.androidBuild
 
-name := Ephedra
+name := "Ephedra"
