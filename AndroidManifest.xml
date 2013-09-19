@@ -10,6 +10,12 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+          </activity>
+
+          <receiver android:name="EphedraAlarmReceiver">
+            <intent-filter>
+              <action android:name="ephedraAlarm.getNotifications" />
+            </intent-filter>
+          </receiver>
     </application>
 </manifest>

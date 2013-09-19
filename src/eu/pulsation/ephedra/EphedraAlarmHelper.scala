@@ -7,7 +7,7 @@ import android.content.{Intent, IntentFilter}
 
 class EphedraAlarmHelper(context: Context) {
 
-    private def getAlarmManager() : AlarmManager = {
+    private lazy val alarmManager : AlarmManager = {
     context.getSystemService(Context.ALARM_SERVICE) match {
       case am: AlarmManager => am
       case _ => throw new ClassCastException
@@ -17,7 +17,7 @@ class EphedraAlarmHelper(context: Context) {
     
   def startAlarm() {
 
-    val am:AlarmManager = this.getAlarmManager()
+    val am:AlarmManager = this.alarmManager
 
     val ephedraBroadcastReceiver:BroadcastReceiver = new EphedraAlarmReceiver()
 
@@ -28,7 +28,7 @@ class EphedraAlarmHelper(context: Context) {
 
     val scheduledReceiver:PendingIntent = PendingIntent.getBroadcast(this.context, 0, receiverIntent, PendingIntent.FLAG_CANCEL_CURRENT)
 
-    am.setRepeating(AlarmManager.RTC_WAKEUP, new Date().getTime() , 60 * 1000, scheduledReceiver)
+    am.setRepeating(AlarmManager.RTC_WAKEUP, new Date().getTime() , 1000, scheduledReceiver)
 
   }
 
@@ -38,7 +38,7 @@ class EphedraAlarmHelper(context: Context) {
     intent.setAction("my.alarm.action")
 
     val pi : PendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT)
-    val am : AlarmManager = this.getAlarmManager()
+    val am : AlarmManager = this.alarmManager
 
     am.cancel(pi)
   }
