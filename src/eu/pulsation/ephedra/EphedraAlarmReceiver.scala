@@ -16,9 +16,9 @@ class EphedraAlarmReceiver extends BroadcastReceiver
   private final val TAG = "EphedraAlarmReceiver"
 
   override def onReceive(context: Context, intent: Intent) {
-    // if (BuildConfig.DEBUG) {
+    if (BuildConfig.DEBUG) {
       Log.v(TAG, "TODO: Fetch notifications")
-    // }
+    }
   }
 
 }
