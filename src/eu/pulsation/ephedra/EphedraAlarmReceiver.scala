@@ -14,11 +14,12 @@ class EphedraAlarmReceiver extends BroadcastReceiver
 {
 
   private final val TAG = "EphedraAlarmReceiver"
+  private final val RSS_URL ="http://alimentation.gouv.fr/spip.php?page=backend&id_rubrique=71"
 
   override def onReceive(context: Context, intent: Intent) {
     if (BuildConfig.DEBUG) {
       Log.v(TAG, "TODO: Fetch notifications")
-      val rssFeed = new EphedraRSSFeed("http://alimentation.gouv.fr/spip.php?page=backend&id_rubrique=71")
+      val rssFeed = new EphedraRSSFeed(RSS_URL)
       rssFeed.items.foreach(item => Log.v(TAG, item.toString()))
     }
   }

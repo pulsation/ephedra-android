@@ -3,17 +3,24 @@ package eu.pulsation.ephedra
 import scala.xml._
 
 class EphedraRSSFeed(val url: String) {
+
+  val namespaces = new Object {
+    final val DUBLIN_CORE = "http://purl.org/dc/elements/1.1/"
+    final val RSS = "http://web.resource.org/rss/1.0/modules/content/"
+  }
+
   lazy val items: List[EphedraRSSItem] = {
     val root = XML.load(url)
     (root \\ "item").map(buildItem(_)).toList
   }
+
   def buildItem(node: Node): EphedraRSSItem = {
     new EphedraRSSItem(this,
       (node \\ "title").text,
       (node \\ "guid").text,
       (node \\ "description").text,
-      ((node \\ "encoded") filter (n => n.namespace == "http://purl.org/rss/1.0/modules/content/"):NodeSeq).text,
-      ((node \\ "date") filter (n => n.namespace == "http://purl.org/dc/elements/1.1/"):NodeSeq).text)
+      ((node \\ "encoded") filter (n => n.namespace == this.namespaces.RSS):NodeSeq).text,
+      ((node \\ "date") filter (n => n.namespace == this.namespaces.DUBLIN_CORE):NodeSeq).text)
   }
 }
  
