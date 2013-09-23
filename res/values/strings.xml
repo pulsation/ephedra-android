@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">EphedraMainActivity</string>
+  <string name="app_name">EphedraMainActivity</string>
+  <string name="prefs_name">ephedraPreferences</string>
+  <string name="prefs_rss_entries">readRSSEntries</string>
 </resources>
