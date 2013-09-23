@@ -46,12 +46,3 @@ class EphedraRSSItem(
     crlf + content
   }
 }
-/*   
-  object Feed {
-    def main(args: Array[String]) = {
-      val feed = new Feed("http://agriculture.gouv.fr/spip.php?page=backend&id_rubrique=460")
-        val feedList = feed.downloadItems
-        feedList.foreach(println)
-    }
-  }
-  */
