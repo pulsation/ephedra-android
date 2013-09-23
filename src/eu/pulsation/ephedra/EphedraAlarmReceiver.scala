@@ -20,15 +20,12 @@ class EphedraAlarmReceiver extends BroadcastReceiver
     lazy val preferences = new EphedraPreferences(context)
 
     val rssFeed = new EphedraRSSFeed(context.getResources().getString(R.string.rss_feed))
-    val unreadItems = rssFeed.items.map(item => {
-      if (!preferences.readRSSEntries.contains(item.guid)) {
-        item
-      }
-    })
+    val unreadItems : List[EphedraRSSItem] = rssFeed.items.filter(item => !preferences.readRSSEntries.contains(item.guid))
 
     if (BuildConfig.DEBUG) {
-      Log.v(TAG, "Unread notifications:")
-      unreadItems.foreach(item => Log.v(TAG, item.toString()))
+      Log.v(TAG, "About to build notification")
     }
+    new EphedraNotificationDisplayer(context).displayRSSNotification(unreadItems)
+
   }
 }
