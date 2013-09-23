@@ -10,8 +10,13 @@ class EphedraRSSFeed(val url: String) {
   }
 
   lazy val items: List[EphedraRSSItem] = {
-    val root = XML.load(url)
-    (root \\ "item").map(buildItem(_)).toList
+    try {
+      val root = XML.load(url)
+      (root \\ "item").map(buildItem(_)).toList
+    } catch {
+      // Couldn't load RSS feed.
+      case ioe: java.io.IOException => Nil
+    }
   }
 
   def buildItem(node: Node): EphedraRSSItem = {
