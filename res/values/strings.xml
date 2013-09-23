@@ -3,4 +3,5 @@
   <string name="app_name">EphedraMainActivity</string>
   <string name="prefs_name">ephedraPreferences</string>
   <string name="prefs_rss_entries">readRSSEntries</string>
+  <string name="rss_feed">http://alimentation.gouv.fr/spip.php?page=backend&amp;id_rubrique=71</string>
 </resources>

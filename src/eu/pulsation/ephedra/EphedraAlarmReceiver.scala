@@ -14,14 +14,12 @@ class EphedraAlarmReceiver extends BroadcastReceiver
 {
 
   private final val TAG = "EphedraAlarmReceiver"
-  private final val RSS_URL ="http://alimentation.gouv.fr/spip.php?page=backend&id_rubrique=71"
 
   override def onReceive(context: Context, intent: Intent) {
 
     lazy val preferences = new EphedraPreferences(context)
 
-    val rssFeed = new EphedraRSSFeed(RSS_URL)
-//      rssFeed.items.foreach(item => Log.v(TAG, item.toString()))
+    val rssFeed = new EphedraRSSFeed(context.getResources().getString(R.string.rss_feed))
     val unreadItems = rssFeed.items.map(item => {
       if (!preferences.readRSSEntries.contains(item.guid)) {
         item
