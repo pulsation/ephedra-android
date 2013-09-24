@@ -21,7 +21,8 @@ class EphedraAlarmReceiver extends BroadcastReceiver
     lazy val preferences = new EphedraPreferences(context)
 
     def filterItem(item : EphedraRSSItem) = {
-      ("ACTU ALERTE".r findFirstIn item.description) != ""
+//      ("ACTU ALERTE".r findFirstIn item.description) != ""
+      true
     }
 
     val rssFeed = new EphedraRSSFeed(context.getResources().getString(R.string.rss_feed))

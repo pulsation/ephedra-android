@@ -2,6 +2,7 @@ package eu.pulsation.ephedra
 
 import android.app.Activity
 import android.os.Bundle
+import android.view.Menu
 
 class EphedraMainActivity extends Activity
 {
@@ -13,5 +14,10 @@ class EphedraMainActivity extends Activity
       super.onCreate(savedInstanceState)
       setContentView(R.layout.main)
       ephedraAlarmHelper.startAlarm()
+    }
+
+    override def onCreateOptionsMenu(menu: Menu) : Boolean = {
+      this.getMenuInflater().inflate(R.menu.menu, menu)
+      true
     }
 }
