@@ -28,13 +28,19 @@ class EphedraNotificationDisplayer (context: Context) {
       val crlf = System.getProperty("line.separator") 
 
       items.foldLeft("") {
-        (acc, item) => acc + crlf + item
+        (acc, item) => {
+          if (acc == "") {
+            item.title
+          } else {
+            acc + crlf + item.title
+          }
+        }
       }
     }
     if (BuildConfig.DEBUG) {
-      Log.v(TAG, "Notification")
-      Log.v(TAG, "Title: " + title)
-      Log.v(TAG, "Content:")
+      Log.v(TAG, "** Notification **")
+      Log.v(TAG, "[Title]" + title)
+      Log.v(TAG, "[Content]")
       Log.v(TAG, content)
     }
 /*

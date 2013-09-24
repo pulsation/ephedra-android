@@ -28,7 +28,7 @@ class EphedraAlarmHelper(context: Context) {
 
     val scheduledReceiver:PendingIntent = PendingIntent.getBroadcast(this.context, 0, receiverIntent, PendingIntent.FLAG_CANCEL_CURRENT)
 
-    am.setRepeating(AlarmManager.RTC_WAKEUP, new Date().getTime() , 1000, scheduledReceiver)
+    am.setRepeating(AlarmManager.RTC_WAKEUP, new Date().getTime() , 1000 * 30, scheduledReceiver)
 
   }
 
