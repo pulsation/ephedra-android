@@ -25,7 +25,8 @@ class EphedraAlarmReceiver extends BroadcastReceiver
     if (BuildConfig.DEBUG) {
       Log.v(TAG, "About to build notification")
     }
-    new EphedraNotificationDisplayer(context).displayRSSNotification(unreadItems)
-
+    if (!unreadItems.isEmpty) {
+      new EphedraNotificationDisplayer(context).displayRSSNotification(unreadItems)
+    }
   }
 }

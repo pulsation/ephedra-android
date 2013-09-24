@@ -13,7 +13,6 @@ class EphedraAlarmHelper(context: Context) {
       case _ => throw new ClassCastException
     }
   }
-
     
   def startAlarm() {
 
