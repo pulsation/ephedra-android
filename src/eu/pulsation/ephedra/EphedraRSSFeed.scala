@@ -25,7 +25,8 @@ class EphedraRSSFeed(val url: String) {
       (node \\ "guid").text,
       (node \\ "description").text,
       ((node \\ "encoded") filter (n => n.namespace == this.namespaces.RSS):NodeSeq).text,
-      ((node \\ "date") filter (n => n.namespace == this.namespaces.DUBLIN_CORE):NodeSeq).text)
+      ((node \\ "date") filter (n => n.namespace == this.namespaces.DUBLIN_CORE):NodeSeq).text,
+      ((node \\ "subject") filter (n => n.namespace == this.namespaces.DUBLIN_CORE):NodeSeq).text)
   }
 }
  
@@ -35,14 +36,16 @@ class EphedraRSSItem(
   val guid: String,
   val description: String,
   val content: String,
-  val date: String) {
+  val date: String,
+  val subject : String) {
      
   override def toString(): String = {
     val crlf = System.getProperty("line.separator")
 
     crlf + "Title : " + title +
-    crlf + " Guid: " + guid + 
-    crlf + " Date: " + date +
+    crlf + "Guid: " + guid + 
+    crlf + "Date: " + date +
+    crlf + "Subject: " + subject
     crlf + content
   }
 }
