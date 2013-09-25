@@ -2,20 +2,37 @@ package eu.pulsation.ephedra
  
 import scala.xml._
 
+import android.util.Log
+
 class EphedraRSSFeed(val url: String) {
+
+  final private val TAG = "EphedraRSSFeed"
 
   val namespaces = new Object {
     final val DUBLIN_CORE = "http://purl.org/dc/elements/1.1/"
     final val RSS = "http://web.resource.org/rss/1.0/modules/content/"
   }
 
+  /**
+   * TODO: Filter items according to user preferences
+   */
+  def filterItem(item : EphedraRSSItem) = {
+//      ("ACTU ALERTE".r findFirstIn item.description) != ""
+    true
+  }
+
   lazy val items: List[EphedraRSSItem] = {
     try {
       val root = XML.load(url)
-      (root \\ "item").map(buildItem(_)).toList
+      val allItems = (root \\ "item").map(buildItem(_)).toList
+      allItems.filter(this.filterItem)
     } catch {
       // Couldn't load RSS feed.
-      case ioe: java.io.IOException => Nil
+      case ioe: java.io.IOException => { 
+        Log.v(TAG, "Couldn't load RSS feed: " + ioe)
+        ioe.printStackTrace()
+        Nil
+      }
     }
   }
 
