@@ -1,10 +1,10 @@
 package eu.pulsation.ephedra
 
-import android.app.Activity
+import android.app.ListActivity
 import android.os.Bundle
 import android.view.Menu
 
-class EphedraMainActivity extends Activity
+class EphedraMainActivity extends ListActivity
 {
     /** Called when the activity is first created. */
     override def onCreate(savedInstanceState: Bundle)
