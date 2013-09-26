@@ -7,8 +7,8 @@ import ExecutionContext.Implicits.global
 
 import android.app.ListActivity
 import android.os.Bundle
-import android.view.Menu
-import android.widget.{ArrayAdapter, Toast}
+import android.view.{Menu, View}
+import android.widget.{ArrayAdapter, Toast, ListView}
 import android.util.Log
 
 class EphedraMainActivity extends ListActivity 
@@ -20,8 +20,7 @@ class EphedraMainActivity extends ListActivity
   implicit def toRunnable[F](f: => F): Runnable = new Runnable() { def run() = f }
 
   /** Called when the activity is first created. */
-  override def onCreate(savedInstanceState: Bundle)
-  {
+  override def onCreate(savedInstanceState: Bundle) {
     val adapter = new ArrayAdapter[String](this, android.R.layout.simple_list_item_1)
     lazy val ephedraAlarmHelper = new EphedraAlarmHelper(this)
 
@@ -55,6 +54,10 @@ class EphedraMainActivity extends ListActivity
           .show()
       }
     }
+  }
+
+  override def onListItemClick(lv: ListView, v: View, position: Int, id: Long) {
+    Log.v(TAG, "onItemClick - position: " + position + "; id: " + id)
   }
 
   override def onCreateOptionsMenu(menu: Menu) : Boolean = {
