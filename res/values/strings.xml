@@ -8,4 +8,5 @@
   <string name="new_alert">Alerte alimentaire</string>
   <string name="new_alerts">alertes alimentaires</string>
   <string name="parameters">Paramètres</string>
+  <string name="failed_loading_feed">Impossible de lire le flux de données. Veuillez réessayer plus tard.</string>
 </resources>

@@ -2,12 +2,13 @@ package eu.pulsation.ephedra
 
 import scala.collection.JavaConversions._
 import scala.concurrent._
+import scala.language.implicitConversions
 import ExecutionContext.Implicits.global
 
 import android.app.ListActivity
 import android.os.Bundle
 import android.view.Menu
-import android.widget.ArrayAdapter
+import android.widget.{ArrayAdapter, Toast}
 import android.util.Log
 
 class EphedraMainActivity extends ListActivity 
@@ -46,8 +47,12 @@ class EphedraMainActivity extends ListActivity
 
     promise onFailure {
       case error => { 
-        // TODO: toast on error
         Log.v(TAG, error.getMessage)
+        Toast
+          .makeText(this.getApplicationContext(), 
+            this.getString(R.string.failed_loading_feed),
+            Toast.LENGTH_LONG)
+          .show()
       }
     }
   }

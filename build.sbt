@@ -6,3 +6,7 @@ name := "Ephedra"
 
 proguardOptions in Android ++= Seq(
 )
+
+scalacOptions ++= Seq(
+  "-feature"
+)
