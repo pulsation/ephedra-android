@@ -29,14 +29,9 @@ class EphedraAlertListFragment extends ListFragment
 
   /** Called when the activity is first created. */
   override def onCreate(savedInstanceState: Bundle) {
-    val adapter = new ArrayAdapter[String](context, android.R.layout.simple_list_item_1)
-    lazy val ephedraAlarmHelper = new EphedraAlarmHelper(context)
-
     super.onCreate(savedInstanceState)
-    // setContentView(R.layout.main)
 
-    // Launch periodic updates
-    // ephedraAlarmHelper.startAlarm()
+    val adapter = new ArrayAdapter[String](context, android.R.layout.simple_list_item_1)
 
     this.setListAdapter(adapter)
     
@@ -68,10 +63,4 @@ class EphedraAlertListFragment extends ListFragment
     Log.v(TAG, "onItemClick - position: " + position + "; id: " + id)
   }
 
-  /*
-  override def onCreateOptionsMenu(menu: Menu) : Boolean = {
-    this.getMenuInflater().inflate(R.menu.menu, menu)
-    true
-  }
-  */
 }
