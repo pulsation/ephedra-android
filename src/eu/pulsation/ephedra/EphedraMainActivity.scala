@@ -22,7 +22,7 @@ class EphedraMainActivity extends ListActivity
   /** Called when the activity is first created. */
   override def onCreate(savedInstanceState: Bundle)
   {
-    val adapter = new ArrayAdapter[String](this, android.R.layout.simple_list_item_1/*, new Array()rssTitles*/)
+    val adapter = new ArrayAdapter[String](this, android.R.layout.simple_list_item_1)
     lazy val ephedraAlarmHelper = new EphedraAlarmHelper(this)
 
     super.onCreate(savedInstanceState)
@@ -33,20 +33,20 @@ class EphedraMainActivity extends ListActivity
 
     this.setListAdapter(adapter)
     
-    val promise: Future[EphedraRSSFeed] = future {
-      new EphedraRSSFeed(this.getResources().getString(R.string.rss_feed))
+    val promise: Future[List[EphedraRSSItem]] = future {
+      (new EphedraRSSFeed(this.getResources().getString(R.string.rss_feed))).items
     }
 
     promise onSuccess {
-      case rssFeed => {
+      case items => {
         runOnUiThread({
-          adapter.addAll(rssFeed.items.map(item => item.title))
+          adapter.addAll(items.map(item => item.title))
         })
       }
     }
 
     promise onFailure {
-      case error => { 
+      case error => {
         Log.v(TAG, error.getMessage)
         Toast
           .makeText(this.getApplicationContext(), 
