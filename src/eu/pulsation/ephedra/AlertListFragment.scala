@@ -31,7 +31,7 @@ class AlertListFragment extends ListFragment
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
 
-    val adapter = new ArrayAdapter[String](context, android.R.layout.simple_list_item_1)
+    val adapter = new ArrayAdapter[RSSItem](context, android.R.layout.simple_list_item_1)
 
     this.setListAdapter(adapter)
     
@@ -42,7 +42,7 @@ class AlertListFragment extends ListFragment
     promise onSuccess {
       case items => {
         context.runOnUiThread({
-          adapter.addAll(items.map(item => item.title))
+          adapter.addAll(items/*.map(item => item.title)*/)
         })
       }
     }

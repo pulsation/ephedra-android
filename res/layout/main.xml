@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-    <fragment android:name="eu.pulsation.ephedra.EphedraAlertListFragment"
+    <fragment android:name="eu.pulsation.ephedra.AlertListFragment"
               android:id="@+id/alert_list_fragment"
               android:layout_weight="1"
               android:layout_width="match_parent"

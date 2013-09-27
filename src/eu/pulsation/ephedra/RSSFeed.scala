@@ -56,13 +56,5 @@ class RSSItem(
   val date: String,
   val subject : String) {
      
-  override def toString(): String = {
-    val crlf = System.getProperty("line.separator")
-
-    crlf + "Title : " + title +
-    crlf + "Guid: " + guid + 
-    crlf + "Date: " + date +
-    crlf + "Subject: " + subject
-    crlf + content
-  }
+  override def toString(): String = { title }
 }
