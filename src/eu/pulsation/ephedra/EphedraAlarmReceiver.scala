@@ -14,22 +14,22 @@ import scala.util.matching.Regex
 class EphedraAlarmReceiver extends BroadcastReceiver 
 {
 
-  private final val TAG = "EphedraAlarmReceiver"
+  private final val TAG = "eu.pulsation.ephedra.EphedraAlarmReceiver"
 
   override def onReceive(context: Context, intent: Intent) {
 
-    lazy val preferences = new EphedraPreferences(context)
+    lazy val preferences = new Preferences(context)
 
 
-    val rssFeed = new EphedraRSSFeed(context.getResources().getString(R.string.rss_feed))
+    val rssFeed = new RSSFeed(context.getResources().getString(R.string.rss_feed))
 
-    val unreadItems : List[EphedraRSSItem] = rssFeed.items.filter(item => !preferences.readRSSEntries.contains(item.guid))
+    val unreadItems : List[RSSItem] = rssFeed.items.filter(item => !preferences.readRSSEntries.contains(item.guid))
 
     if (BuildConfig.DEBUG) {
       Log.v(TAG, "About to build notification")
     }
     if (!unreadItems.isEmpty) {
-      new EphedraNotificationDisplayer(context).displayRSSNotification(unreadItems)
+      new NotificationDisplayer(context).displayRSSNotification(unreadItems)
     }
   }
 }

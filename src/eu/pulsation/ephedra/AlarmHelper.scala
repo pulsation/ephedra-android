@@ -5,7 +5,7 @@ import android.content.{Context, BroadcastReceiver}
 import android.app.{AlarmManager, PendingIntent} 
 import android.content.{Intent, IntentFilter}
 
-class EphedraAlarmHelper(context: Context) {
+class AlarmHelper(context: Context) {
 
     private lazy val alarmManager : AlarmManager = {
     context.getSystemService(Context.ALARM_SERVICE) match {

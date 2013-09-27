@@ -5,7 +5,7 @@ import scala.collection.JavaConverters._
 
 import android.content.Context
 
-class EphedraPreferences(context: Context) {
+class Preferences(context: Context) {
 
   /**
    * Returns shared preferences object

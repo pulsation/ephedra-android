@@ -14,9 +14,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class EphedraAlertListFragment extends ListFragment 
+class AlertListFragment extends ListFragment 
 {
-  final private val TAG="EphedraAlertListFragment"
+  final private val TAG="eu.pulsation.ephedra.AlertListFragment"
   
   // Needed to be converted in a Runnable called by runOnUiThread()
   implicit def toRunnable[F](f: => F): Runnable = new Runnable() { def run() = f }
@@ -35,8 +35,8 @@ class EphedraAlertListFragment extends ListFragment
 
     this.setListAdapter(adapter)
     
-    val promise: Future[List[EphedraRSSItem]] = future {
-      (new EphedraRSSFeed(this.getResources().getString(R.string.rss_feed))).items
+    val promise: Future[List[RSSItem]] = future {
+      (new RSSFeed(this.getResources().getString(R.string.rss_feed))).items
     }
 
     promise onSuccess {

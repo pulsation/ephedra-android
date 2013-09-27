@@ -4,9 +4,9 @@ import scala.xml._
 
 import android.util.Log
 
-class EphedraRSSFeed(val url: String) {
+class RSSFeed(val url: String) {
 
-  final private val TAG = "EphedraRSSFeed"
+  final private val TAG = "eu.pulsation.ephedra.RSSFeed"
 
   val namespaces = new Object {
     final val DUBLIN_CORE = "http://purl.org/dc/elements/1.1/"
@@ -16,12 +16,12 @@ class EphedraRSSFeed(val url: String) {
   /**
    * TODO: Filter items according to user preferences
    */
-  def filterItem(item : EphedraRSSItem) = {
+  def filterItem(item : RSSItem) = {
 //      ("ACTU ALERTE".r findFirstIn item.description) != ""
     true
   }
 
-  lazy val items: List[EphedraRSSItem] = {
+  lazy val items: List[RSSItem] = {
     try {
       val root = XML.load(url)
       val allItems = (root \\ "item").map(buildItem(_)).toList
@@ -36,8 +36,8 @@ class EphedraRSSFeed(val url: String) {
     }
   }
 
-  def buildItem(node: Node): EphedraRSSItem = {
-    new EphedraRSSItem(this,
+  def buildItem(node: Node): RSSItem = {
+    new RSSItem(this,
       (node \\ "title").text,
       (node \\ "guid").text,
       (node \\ "description").text,
@@ -47,8 +47,8 @@ class EphedraRSSFeed(val url: String) {
   }
 }
  
-class EphedraRSSItem(
-  val parent: EphedraRSSFeed,
+class RSSItem(
+  val parent: RSSFeed,
   val title: String,
   val guid: String,
   val description: String,

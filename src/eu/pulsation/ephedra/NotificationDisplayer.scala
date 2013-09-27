@@ -4,9 +4,9 @@ import android.app.{Notification, PendingIntent, NotificationManager}
 import android.util.Log
 import android.content.{Context, Intent}
 
-class EphedraNotificationDisplayer (context: Context) {
+class NotificationDisplayer (context: Context) {
 
-  private final val TAG = "EphedraNotificationDisplayer"
+  private final val TAG = "eu.pulsation.ephedra.NotificationDisplayer"
 
   lazy val notificationIntent : Intent = new Intent(context, classOf[EphedraMainActivity])
   lazy val contentIntent : PendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0)
@@ -19,7 +19,7 @@ class EphedraNotificationDisplayer (context: Context) {
     }
   }
 
-  def displayRSSNotification(items: List[EphedraRSSItem]) {
+  def displayRSSNotification(items: List[RSSItem]) {
     val notificationBuilder = builder
     .setSmallIcon(R.drawable.ic_launcher)
     .setContentIntent(contentIntent)
