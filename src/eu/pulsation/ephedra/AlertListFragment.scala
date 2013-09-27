@@ -5,7 +5,7 @@ import scala.concurrent._
 import scala.language.implicitConversions
 import ExecutionContext.Implicits.global
 
-import android.app.ListFragment
+import android.app.{ListFragment, FragmentTransaction}
 import android.os.Bundle
 import android.view.{Menu, View}
 import android.widget.{Toast, ListView}
@@ -63,6 +63,25 @@ class AlertListFragment extends ListFragment
     val rssItem = lv.getItemAtPosition(position)
 
     Log.v(TAG, "onItemClick - Item: " + rssItem)
+
+    val alertDetailsFragment = context.getFragmentManager().findFragmentById(R.id.alert_details_fragment)
+    if (alertDetailsFragment == null) {
+      Log.v(TAG, "Details fragment doesn't exist yet, instantiating it")
+      val newFragment = new AlertDetailsFragment()
+      val args = new Bundle()
+      newFragment.setArguments(args)
+
+      val transaction: FragmentTransaction = context.getFragmentManager().beginTransaction()
+
+      transaction.replace(R.id.main_layout, newFragment)
+      transaction.addToBackStack(null)
+      transaction.commit()
+    } else {
+      Log.v(TAG, "Details fragment already exists")
+      // TODO - https://developer.android.com/training/basics/fragments/communicating.html
+    }
   }
+
+
 
 }
