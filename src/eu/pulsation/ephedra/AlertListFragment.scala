@@ -42,7 +42,7 @@ class AlertListFragment extends ListFragment
     promise onSuccess {
       case items => {
         context.runOnUiThread({
-          adapter.addAll(items/*.map(item => item.title)*/)
+          adapter.addAll(items)
         })
       }
     }
@@ -61,6 +61,7 @@ class AlertListFragment extends ListFragment
 
   override def onListItemClick(lv: ListView, v: View, position: Int, id: Long) {
     Log.v(TAG, "onItemClick - position: " + position + "; id: " + id)
+    Log.v(TAG, "Item: " + lv.getItemAtPosition(position))
   }
 
 }
