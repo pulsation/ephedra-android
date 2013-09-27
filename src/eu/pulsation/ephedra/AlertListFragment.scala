@@ -8,7 +8,7 @@ import ExecutionContext.Implicits.global
 import android.app.ListFragment
 import android.os.Bundle
 import android.view.{Menu, View}
-import android.widget.{ArrayAdapter, Toast, ListView}
+import android.widget.{Toast, ListView}
 import android.util.Log
 
 import android.view.LayoutInflater
@@ -31,7 +31,7 @@ class AlertListFragment extends ListFragment
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
 
-    val adapter = new ArrayAdapter[RSSItem](context, android.R.layout.simple_list_item_1)
+    val adapter = new RssItemsArrayAdapter(context, android.R.layout.simple_list_item_1)
 
     this.setListAdapter(adapter)
     
@@ -60,8 +60,9 @@ class AlertListFragment extends ListFragment
   }
 
   override def onListItemClick(lv: ListView, v: View, position: Int, id: Long) {
-    Log.v(TAG, "onItemClick - position: " + position + "; id: " + id)
-    Log.v(TAG, "Item: " + lv.getItemAtPosition(position))
+    val rssItem = lv.getItemAtPosition(position)
+
+    Log.v(TAG, "onItemClick - Item: " + rssItem)
   }
 
 }
