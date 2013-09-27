@@ -5,17 +5,11 @@
     android:layout_height="fill_parent"
     android:id="@+id/main_layout"
     >
-    <fragment android:name="eu.pulsation.ephedra.AlertListFragment"
-              android:id="@+id/alert_list_fragment"
-              android:layout_weight="1"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent" />
 
-    <fragment android:name="eu.pulsation.ephedra.AlertDetailsFragment"
-              android:id="@+id/alert_details_fragment"
-              android:layout_weight="2"
-              android:layout_width="0dp"
-              android:layout_height="match_parent" />
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
 
 </LinearLayout>
 

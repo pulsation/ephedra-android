@@ -14,6 +14,16 @@ class EphedraMainActivity extends Activity {
 
     super.onCreate(savedInstanceState)
     setContentView(R.layout.main)
+
+    if (findViewById(R.id.fragment_container) != null) {
+      if (savedInstanceState != null) {
+        return;
+      }
+    }
+    val alertListFragment = new AlertListFragment()
+    alertListFragment.setArguments(getIntent().getExtras())
+
+    getFragmentManager().beginTransaction().add(R.id.fragment_container, alertListFragment).commit()
   }
 
   override def onCreateOptionsMenu(menu: Menu) : Boolean = {

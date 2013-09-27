@@ -64,6 +64,8 @@ class AlertListFragment extends ListFragment
 
     Log.v(TAG, "onItemClick - Item: " + rssItem)
 
+    // FIXME - https://developer.android.com/training/basics/fragments/communicating.html
+    /*
     val alertDetailsFragment = context.getFragmentManager().findFragmentById(R.id.alert_details_fragment)
     if (alertDetailsFragment == null) {
       Log.v(TAG, "Details fragment doesn't exist yet, instantiating it")
@@ -72,14 +74,12 @@ class AlertListFragment extends ListFragment
       newFragment.setArguments(args)
 
       val transaction: FragmentTransaction = context.getFragmentManager().beginTransaction()
-
-      transaction.replace(R.id.main_layout, newFragment)
+      transaction.replace(R.id.fragment_container, newFragment)
       transaction.addToBackStack(null)
       transaction.commit()
     } else {
       Log.v(TAG, "Details fragment already exists")
-      // TODO - https://developer.android.com/training/basics/fragments/communicating.html
-    }
+    }*/
   }
 
 
