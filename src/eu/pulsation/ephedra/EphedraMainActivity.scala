@@ -1,13 +1,45 @@
 package eu.pulsation.ephedra
 
-import android.app.Activity
+import android.app.{Activity, Fragment}
 import android.os.Bundle
 import android.view.Menu
 
 class EphedraMainActivity extends Activity {
 
   final private val TAG="eu.pulsation.ephedra.EphedraMainActivity"
-  
+
+  lazy val alertListFragment = {
+    new AlertListFragment()
+  }
+
+  lazy val alertDetailsFragment = {
+    new AlertDetailsFragment()
+  }
+
+  /**
+   * Switch from a fragment to another
+   */
+  def switchToFragment(fragment: Fragment) {
+    val transaction = getFragmentManager().beginTransaction()
+
+    transaction.replace(R.id.fragment_container, fragment)
+    transaction.addToBackStack(null)
+
+    transaction.commit()
+  }
+
+  /**
+   * Show the initial fragment to be displayed
+   */
+  def displayInitialFragment(fragment: Fragment) {
+    val transaction = getFragmentManager().beginTransaction()
+
+    fragment.setArguments(getIntent().getExtras())
+    transaction.add(R.id.fragment_container, fragment)
+
+    transaction.commit()
+  }
+
   /** Called when the activity is first created. */
   override def onCreate(savedInstanceState: Bundle) {
     lazy val ephedraAlarmHelper = new AlarmHelper(this)
@@ -16,14 +48,12 @@ class EphedraMainActivity extends Activity {
     setContentView(R.layout.main)
 
     if (findViewById(R.id.fragment_container) != null) {
-      if (savedInstanceState != null) {
-        return;
+      // Fragment container exists.
+      if (savedInstanceState == null) {
+        // We're not beeing restored from a previous state.
+        displayInitialFragment(alertListFragment)
       }
     }
-    val alertListFragment = new AlertListFragment()
-    alertListFragment.setArguments(getIntent().getExtras())
-
-    getFragmentManager().beginTransaction().add(R.id.fragment_container, alertListFragment).commit()
   }
 
   override def onCreateOptionsMenu(menu: Menu) : Boolean = {

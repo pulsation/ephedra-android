@@ -14,8 +14,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class AlertListFragment extends ListFragment 
-{
+class AlertListFragment extends ListFragment {
   final private val TAG="eu.pulsation.ephedra.AlertListFragment"
   
   // Needed to be converted in a Runnable called by runOnUiThread()
@@ -81,7 +80,4 @@ class AlertListFragment extends ListFragment
       Log.v(TAG, "Details fragment already exists")
     }*/
   }
-
-
-
 }
