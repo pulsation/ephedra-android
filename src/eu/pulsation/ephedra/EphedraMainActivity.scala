@@ -5,10 +5,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.util.Log
 
-import scala.collection.mutable.Subscriber
-import scala.collection.mutable.Publisher
+import scala.collection.mutable.{Subscriber, Publisher}
 
-class EphedraMainActivity extends Activity with Subscriber[AlertSelectedEvent, Publisher[AlertSelectedEvent]] {
+class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent, Publisher[RSSItemSelectedEvent]] {
 
   final private val TAG="eu.pulsation.ephedra.EphedraMainActivity"
 
@@ -65,7 +64,7 @@ class EphedraMainActivity extends Activity with Subscriber[AlertSelectedEvent, P
     true
   }
 
-  override def notify(pub: Publisher[AlertSelectedEvent], event: AlertSelectedEvent): Unit = {
-    Log.v(TAG, "Got an event")
+  override def notify(pub: Publisher[RSSItemSelectedEvent], event: RSSItemSelectedEvent): Unit = {
+    Log.v(TAG, "Got an event: " + event.rssItem)
   }
 }
