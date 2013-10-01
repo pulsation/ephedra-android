@@ -5,7 +5,7 @@ import scala.concurrent._
 import scala.language.implicitConversions
 import ExecutionContext.Implicits.global
 
-import android.app.{ListFragment, FragmentTransaction}
+import android.app.{ListFragment}
 import android.os.Bundle
 import android.view.{Menu, View}
 import android.widget.{Toast, ListView}
@@ -70,7 +70,8 @@ class AlertListFragment extends ListFragment {
       case item: RSSItem => item
       case _ => throw new ClassCastException
     }
-    selectedRSSItem.set(rssItem)
+
+    selectedRSSItem.update(rssItem)
 
     // FIXME - https://developer.android.com/training/basics/fragments/communicating.html
     /*

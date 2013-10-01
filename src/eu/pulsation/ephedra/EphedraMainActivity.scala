@@ -1,6 +1,6 @@
 package eu.pulsation.ephedra
 
-import android.app.{Activity, Fragment}
+import android.app.{Activity, Fragment, FragmentTransaction}
 import android.os.Bundle
 import android.view.Menu
 import android.util.Log
@@ -64,7 +64,18 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
     true
   }
 
+  // An alert has been selected in the list.
   override def notify(pub: Publisher[RSSItemSelectedEvent], event: RSSItemSelectedEvent): Unit = {
     Log.v(TAG, "Got an event: " + event.rssItem)
+
+    // Replace list fragment by details fragment
+    val transaction: FragmentTransaction = this.getFragmentManager().beginTransaction()
+
+    // TODO: Fill arguments bundle with selected item characteristics
+    val args = new Bundle()
+    alertDetailsFragment.setArguments(args)
+    transaction.replace(R.id.fragment_container, alertDetailsFragment)
+    transaction.addToBackStack(null)
+    transaction.commit()
   }
 }

@@ -6,7 +6,7 @@ case class RSSItemSelectedEvent (rssItem: RSSItem)
 
 class SelectedRSSItem extends Publisher[RSSItemSelectedEvent] {
 
-  def set(rssItem: RSSItem) {
+  def update(rssItem: RSSItem) {
     this.publish(RSSItemSelectedEvent(rssItem))
   }
 }
