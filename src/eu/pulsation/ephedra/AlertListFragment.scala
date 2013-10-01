@@ -4,6 +4,7 @@ import scala.collection.JavaConversions._
 import scala.concurrent._
 import scala.language.implicitConversions
 import ExecutionContext.Implicits.global
+import scala.collection.mutable.{Publisher, Subscriber}
 
 import android.app.{ListFragment, FragmentTransaction}
 import android.os.Bundle
@@ -14,7 +15,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class AlertListFragment extends ListFragment {
+case class AlertSelectedEvent (rssItem: RSSItem)
+
+class AlertListFragment extends /*Publisher[AlertSelectedEvent]*/ ListFragment /*with Publisher[AlertSelectedEvent]*/ {
+
+  object SelectedRSSItem extends Publisher[AlertSelectedEvent] {
+
+    def setRssItem(rssItem: RSSItem) {
+      Log.v("AlertSelectedPublisher", "Sending an event")
+      this.publish(AlertSelectedEvent(rssItem))
+    }
+  }
+
   final private val TAG="eu.pulsation.ephedra.AlertListFragment"
   
   // Needed to be converted in a Runnable called by runOnUiThread()
@@ -56,12 +68,22 @@ class AlertListFragment extends ListFragment {
           .show()
       }
     }
+    
+    context match {
+      case sub: EphedraMainActivity => SelectedRSSItem.subscribe(sub)
+      case _ => Log.v(TAG, "Could not subscribe to main activity")
+    }
   }
 
   override def onListItemClick(lv: ListView, v: View, position: Int, id: Long) {
-    val rssItem = lv.getItemAtPosition(position)
+    val rssItem : RSSItem = lv.getItemAtPosition(position) match {
+      case item: RSSItem => item
+      case _ => throw new ClassCastException
+    }
 
     Log.v(TAG, "onItemClick - Item: " + rssItem)
+
+    SelectedRSSItem.setRssItem(rssItem)
 
     // FIXME - https://developer.android.com/training/basics/fragments/communicating.html
     /*
