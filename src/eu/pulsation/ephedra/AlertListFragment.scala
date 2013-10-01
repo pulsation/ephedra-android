@@ -25,14 +25,14 @@ class AlertListFragment extends ListFragment {
     inflater.inflate(R.layout.alert_list, container, false)
   }
 
-  lazy val context = this.getActivity()
+  lazy val activity = this.getActivity()
   lazy val selectedRSSItem = new SelectedRSSItem()
 
   /** Called when the activity is first created. */
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
 
-    val adapter = new RssItemsArrayAdapter(context, android.R.layout.simple_list_item_1)
+    val adapter = new RssItemsArrayAdapter(activity, android.R.layout.simple_list_item_1)
 
     this.setListAdapter(adapter)
     
@@ -42,7 +42,7 @@ class AlertListFragment extends ListFragment {
 
     promise onSuccess {
       case items => {
-        context.runOnUiThread({
+        activity.runOnUiThread({
           adapter.addAll(items)
         })
       }
@@ -52,15 +52,15 @@ class AlertListFragment extends ListFragment {
       case error => {
         Log.v(TAG, error.getMessage)
         Toast
-          .makeText(context.getApplicationContext(), 
+          .makeText(activity.getApplicationContext(), 
             this.getString(R.string.failed_loading_feed),
             Toast.LENGTH_LONG)
           .show()
       }
     }
     
-    context match {
-      case sub: EphedraMainActivity => selectedRSSItem.subscribe(sub)
+    activity match {
+      case mainActivity: EphedraMainActivity => selectedRSSItem.subscribe(mainActivity)
       case _ => Log.v(TAG, "Could not subscribe to main activity")
     }
   }
@@ -72,22 +72,5 @@ class AlertListFragment extends ListFragment {
     }
 
     selectedRSSItem.update(rssItem)
-
-    // FIXME - https://developer.android.com/training/basics/fragments/communicating.html
-    /*
-    val alertDetailsFragment = context.getFragmentManager().findFragmentById(R.id.alert_details_fragment)
-    if (alertDetailsFragment == null) {
-      Log.v(TAG, "Details fragment doesn't exist yet, instantiating it")
-      val newFragment = new AlertDetailsFragment()
-      val args = new Bundle()
-      newFragment.setArguments(args)
-
-      val transaction: FragmentTransaction = context.getFragmentManager().beginTransaction()
-      transaction.replace(R.id.fragment_container, newFragment)
-      transaction.addToBackStack(null)
-      transaction.commit()
-    } else {
-      Log.v(TAG, "Details fragment already exists")
-    }*/
   }
 }

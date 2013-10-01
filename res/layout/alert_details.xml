@@ -4,10 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <TextView android:text="Details view"
+    <TextView android:id="@+id/details_a"
+      android:text="Details view"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       >
     </TextView>
+    <TextView android:id="@+id/details_b"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      />
 </LinearLayout>
 
