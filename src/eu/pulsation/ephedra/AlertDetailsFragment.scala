@@ -6,6 +6,7 @@ import android.view.View
 import android.util.Log
 import android.widget.TextView
 import android.webkit.WebView
+import android.text.Html
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -22,12 +23,14 @@ class AlertDetailsFragment extends Fragment {
 
   def view = getView()
 
+  /*
   def webView : WebView = {
     view.findViewById(R.id.webview) match {
       case wv: WebView => wv
       case _ => throw new ClassCastException
     }
   }
+  */
 
   def detailsText : TextView = {
     view.findViewById(R.id.details) match {
@@ -50,8 +53,7 @@ class AlertDetailsFragment extends Fragment {
     Log.v(TAG, args.getString("content"))
 
     titleText.setText(args.getString("title"))
-    detailsText.setText(args.getString("content"))
-//    webView.loadUrl(args.getString("link"))
+    detailsText.setText(Html.fromHtml(args.getString("content")))
 
     super.onStart()
   }
