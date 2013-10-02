@@ -48,16 +48,3 @@ class RSSFeed(val url: String) {
       (node \\ "link").text)
   }
 }
- 
-case class RSSItem(
-  parent: RSSFeed,
-  title: String,
-  guid: String,
-  description: String,
-  content: String,
-  date: String,
-  subject : String,
-  link: String) {
-     
-  override def toString(): String = { title }
-}
