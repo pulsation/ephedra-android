@@ -19,22 +19,24 @@ class AlertDetailsFragment extends Fragment
   }
 
   lazy val activity = this.getActivity()
-  lazy val detailsText : TextView = activity.findViewById(R.id.details_b) match {
-    case txt: TextView => txt
-    case _ => throw new ClassCastException
+  lazy val view = this.getView()
+
+  lazy val detailsText : TextView = { 
+    view.findViewById(R.id.details_b) match {
+      case txt: TextView => txt
+      case _ => throw new ClassCastException
+    }
   }
 
-/*
+
   override def onStart() {
+    super.onStart()
     detailsText.setText("test")
   }
-*/
+
 
   /** Called when the activity is first created. */
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
-
-//   val detailsText = activity.findViewById(R.id.details_a) 
-
   }
 }
