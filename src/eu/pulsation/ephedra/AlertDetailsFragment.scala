@@ -15,28 +15,38 @@ class AlertDetailsFragment extends Fragment
   
   // Needed to be converted in a Runnable called by runOnUiThread()
   override def onCreateView(inflater: LayoutInflater, container: ViewGroup, savedInstanceState: Bundle):View = {
+    Log.v(TAG, "View created")
     inflater.inflate(R.layout.alert_details, container, false)
   }
 
-  lazy val activity = this.getActivity()
-  lazy val view = this.getView()
+  def view = getView()
 
-  lazy val detailsText : TextView = { 
-    view.findViewById(R.id.details_b) match {
+  def detailsText : TextView = {
+    view.findViewById(R.id.details) match {
       case txt: TextView => txt
       case _ => throw new ClassCastException
     }
   }
 
-  override def onStart() {
-    super.onStart()
-
-    val args = getArguments()
-    Log.v(TAG, "onStart() called. Title:" + args.getString("title"))
-    Log.v(TAG, args.getString("description"))
-    detailsText.setText(args.getString("description"))
+  def titleText : TextView = {
+    view.findViewById(R.id.title) match {
+      case txt : TextView => txt
+      case _ => throw new ClassCastException
+    }
   }
+ 
+  override def onStart() {
+    val args = getArguments()
 
+    Log.v(TAG, "Content:")
+    Log.v(TAG, args.getString("content"))
+
+    titleText.setText(args.getString("title"))
+    detailsText.setText(args.getString("content"))
+
+    super.onStart()
+  }
+  
 
   /** Called when the activity is first created. */
   override def onCreate(savedInstanceState: Bundle) {

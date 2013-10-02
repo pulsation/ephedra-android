@@ -11,6 +11,7 @@ class RSSFeed(val url: String) {
   val namespaces = new Object {
     final val DUBLIN_CORE = "http://purl.org/dc/elements/1.1/"
     final val RSS = "http://web.resource.org/rss/1.0/modules/content/"
+    final val CONTENT = "http://purl.org/rss/1.0/modules/content/"
   }
 
   /**
@@ -41,20 +42,20 @@ class RSSFeed(val url: String) {
       (node \\ "title").text,
       (node \\ "guid").text,
       (node \\ "description").text,
-      ((node \\ "encoded") filter (n => n.namespace == this.namespaces.RSS):NodeSeq).text,
+      ((node \\ "encoded") filter (n => n.namespace == this.namespaces.CONTENT):NodeSeq).text,
       ((node \\ "date") filter (n => n.namespace == this.namespaces.DUBLIN_CORE):NodeSeq).text,
       ((node \\ "subject") filter (n => n.namespace == this.namespaces.DUBLIN_CORE):NodeSeq).text)
   }
 }
  
-class RSSItem(
-  val parent: RSSFeed,
-  val title: String,
-  val guid: String,
-  val description: String,
-  val content: String,
-  val date: String,
-  val subject : String) {
+case class RSSItem(
+  parent: RSSFeed,
+  title: String,
+  guid: String,
+  description: String,
+  content: String,
+  date: String,
+  subject : String) {
      
   override def toString(): String = { title }
 }
