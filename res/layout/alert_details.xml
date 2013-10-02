@@ -8,21 +8,26 @@
       android:text="Title"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      >
-    </TextView>
+      />
 
     <TextView android:id="@+id/details"
       android:text="Details"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      >
-    </TextView>
+      />
 
+    <WebView android:id="@+id/webview"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:gravity="bottom"
+    />
+
+    <!--
     <TextView android:id="@+id/footer"
       android:text="Footer"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      >
-    </TextView>
+      />
+    -->
 </LinearLayout>
 

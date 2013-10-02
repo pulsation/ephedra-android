@@ -5,12 +5,13 @@ import android.os.Bundle
 import android.view.View
 import android.util.Log
 import android.widget.TextView
+import android.webkit.WebView
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class AlertDetailsFragment extends Fragment 
-{
+class AlertDetailsFragment extends Fragment {
+
   final private val TAG="eu.pulsation.ephedra.AlertDetailsFragment"
   
   // Needed to be converted in a Runnable called by runOnUiThread()
@@ -20,6 +21,13 @@ class AlertDetailsFragment extends Fragment
   }
 
   def view = getView()
+
+  def webView : WebView = {
+    view.findViewById(R.id.webview) match {
+      case wv: WebView => wv
+      case _ => throw new ClassCastException
+    }
+  }
 
   def detailsText : TextView = {
     view.findViewById(R.id.details) match {
@@ -43,12 +51,11 @@ class AlertDetailsFragment extends Fragment
 
     titleText.setText(args.getString("title"))
     detailsText.setText(args.getString("content"))
+//    webView.loadUrl(args.getString("link"))
 
     super.onStart()
   }
-  
 
-  /** Called when the activity is first created. */
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
   }

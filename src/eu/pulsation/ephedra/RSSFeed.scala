@@ -44,7 +44,8 @@ class RSSFeed(val url: String) {
       (node \\ "description").text,
       ((node \\ "encoded") filter (n => n.namespace == this.namespaces.CONTENT):NodeSeq).text,
       ((node \\ "date") filter (n => n.namespace == this.namespaces.DUBLIN_CORE):NodeSeq).text,
-      ((node \\ "subject") filter (n => n.namespace == this.namespaces.DUBLIN_CORE):NodeSeq).text)
+      ((node \\ "subject") filter (n => n.namespace == this.namespaces.DUBLIN_CORE):NodeSeq).text,
+      (node \\ "link").text)
   }
 }
  
@@ -55,7 +56,8 @@ case class RSSItem(
   description: String,
   content: String,
   date: String,
-  subject : String) {
+  subject : String,
+  link: String) {
      
   override def toString(): String = { title }
 }
