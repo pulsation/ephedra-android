@@ -66,13 +66,19 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
 
   // An alert has been selected in the list.
   override def notify(pub: Publisher[RSSItemSelectedEvent], event: RSSItemSelectedEvent): Unit = {
-    Log.v(TAG, "Got an event: " + event.rssItem)
+
+    val rssItem = event.rssItem
+
+    Log.v(TAG, "Got an event: " + rssItem)
 
     // Replace list fragment by details fragment
     val transaction: FragmentTransaction = this.getFragmentManager().beginTransaction()
 
     // TODO: Fill arguments bundle with selected item characteristics
     val args = new Bundle()
+    args.putString("title", rssItem.title)
+    args.putString("content", rssItem.content)
+    args.putString("description", rssItem.description)
     alertDetailsFragment.setArguments(args)
     transaction.replace(R.id.fragment_container, alertDetailsFragment)
     transaction.addToBackStack(null)

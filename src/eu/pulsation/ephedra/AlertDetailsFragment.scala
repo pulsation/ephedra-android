@@ -28,10 +28,13 @@ class AlertDetailsFragment extends Fragment
     }
   }
 
-
   override def onStart() {
     super.onStart()
-    detailsText.setText("test")
+
+    val args = getArguments()
+    Log.v(TAG, "onStart() called. Title:" + args.getString("title"))
+    Log.v(TAG, args.getString("description"))
+    detailsText.setText(args.getString("description"))
   }
 
 
