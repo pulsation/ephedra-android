@@ -11,6 +11,8 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
+import scala.util.matching.Regex
+
 class AlertDetailsFragment extends Fragment {
 
   final private val TAG="eu.pulsation.ephedra.AlertDetailsFragment"
@@ -53,7 +55,12 @@ class AlertDetailsFragment extends Fragment {
     Log.v(TAG, args.getString("content"))
 
     titleText.setText(args.getString("title"))
-    detailsText.setText(Html.fromHtml(args.getString("content")))
+
+    // Remove images as they won't be rendered.
+    val pattern = "<img.*>".r
+    val htmlString = pattern replaceAllIn(args.getString("content"), "")
+    
+    detailsText.setText(Html.fromHtml(htmlString))
 
     super.onStart()
   }
