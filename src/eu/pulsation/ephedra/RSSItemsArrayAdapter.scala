@@ -6,7 +6,7 @@ import android.widget.{ArrayAdapter,TextView}
 import android.view.{View, ViewGroup}
 import android.content.Context
 
-class RssItemsArrayAdapter(context: Context, itemViewResourceId: Int)  
+class RSSItemsArrayAdapter(context: Context, itemViewResourceId: Int)  
   extends ArrayAdapter[RSSItem](context, itemViewResourceId) {
 
   override def getView(position: Int, convertView: View, parent: ViewGroup) : View = {

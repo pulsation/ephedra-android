@@ -32,7 +32,7 @@ class AlertListFragment extends ListFragment {
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
 
-    val adapter = new RssItemsArrayAdapter(activity, android.R.layout.simple_list_item_1)
+    val adapter = new RSSItemsArrayAdapter(activity, android.R.layout.simple_list_item_1)
 
     this.setListAdapter(adapter)
     

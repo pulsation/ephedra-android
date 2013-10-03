@@ -21,7 +21,6 @@ class AlertDetailsFragment extends Fragment {
   
   // Needed to be converted in a Runnable called by runOnUiThread()
   override def onCreateView(inflater: LayoutInflater, container: ViewGroup, savedInstanceState: Bundle):View = {
-    Log.v(TAG, "View created")
     inflater.inflate(R.layout.alert_details, container, false)
   }
 
@@ -50,11 +49,6 @@ class AlertDetailsFragment extends Fragment {
  
   override def onStart() {
     val args = getArguments()
-
-    Log.v(TAG, "Content:")
-    Log.v(TAG, args.getString("content"))
-
-    titleText.setText(args.getString("title"))
 
     // Remove images as they won't be rendered.
     val pattern = "<img.*>".r
