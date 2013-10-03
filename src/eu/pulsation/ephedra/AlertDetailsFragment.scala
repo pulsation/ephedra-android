@@ -7,9 +7,11 @@ import android.util.Log
 import android.widget.{TextView, Button}
 import android.webkit.WebView
 import android.text.Html
+import android.text.method.LinkMovementMethod
+import android.net.Uri
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
+import android.content.Intent
+import android.view.{LayoutInflater, ViewGroup}
 
 import scala.util.matching.Regex
 
@@ -59,9 +61,11 @@ class AlertDetailsFragment extends Fragment {
     val htmlString = pattern replaceAllIn(args.getString("content"), "")
     
     detailsText.setText(Html.fromHtml(htmlString))
+    detailsText.setMovementMethod(LinkMovementMethod.getInstance())
     webLinkButton.setOnClickListener(new View.OnClickListener () {
       def onClick(v: View) {
-        Log.v(TAG, "Button clicked")
+        val browserIntent : Intent = new Intent(Intent.ACTION_VIEW, Uri.parse(args.getString("link")))
+        startActivity(browserIntent)
       }
     })
 
