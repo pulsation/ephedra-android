@@ -4,7 +4,7 @@ import android.app.Fragment
 import android.os.Bundle
 import android.view.View
 import android.util.Log
-import android.widget.TextView
+import android.widget.{TextView, Button}
 import android.webkit.WebView
 import android.text.Html
 
@@ -25,15 +25,6 @@ class AlertDetailsFragment extends Fragment {
 
   def view = getView()
 
-  /*
-  def webView : WebView = {
-    view.findViewById(R.id.webview) match {
-      case wv: WebView => wv
-      case _ => throw new ClassCastException
-    }
-  }
-  */
-
   def detailsText : TextView = {
     view.findViewById(R.id.details) match {
       case txt: TextView => txt
@@ -44,6 +35,13 @@ class AlertDetailsFragment extends Fragment {
   def titleText : TextView = {
     view.findViewById(R.id.title) match {
       case txt : TextView => txt
+      case _ => throw new ClassCastException
+    }
+  }
+
+  def webLinkButton : Button = {
+    view.findViewById(R.id.web_link_button) match {
+      case but : Button => but
       case _ => throw new ClassCastException
     }
   }
@@ -61,6 +59,11 @@ class AlertDetailsFragment extends Fragment {
     val htmlString = pattern replaceAllIn(args.getString("content"), "")
     
     detailsText.setText(Html.fromHtml(htmlString))
+    webLinkButton.setOnClickListener(new View.OnClickListener () {
+      def onClick(v: View) {
+        Log.v(TAG, "Button clicked")
+      }
+    })
 
     super.onStart()
   }
