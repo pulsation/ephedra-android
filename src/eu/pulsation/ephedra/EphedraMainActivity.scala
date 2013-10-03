@@ -12,12 +12,10 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
   final private val TAG="eu.pulsation.ephedra.EphedraMainActivity"
 
   lazy val alertListFragment = {
-    Log.v(TAG, "Creating AlertListFragment")
     new AlertListFragment()
   }
 
   lazy val alertDetailsFragment = {
-    Log.v(TAG, "Creating AlertDetailsFragment")
     new AlertDetailsFragment()
   }
 
@@ -74,7 +72,6 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
     // Replace list fragment by details fragment
     val transaction: FragmentTransaction = this.getFragmentManager().beginTransaction()
 
-    // TODO: Fill arguments bundle with selected item characteristics
     val args = new Bundle()
     args.putString("title", rssItem.title)
     args.putString("content", rssItem.content)
@@ -83,6 +80,7 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
     alertDetailsFragment.setArguments(args)
     transaction.replace(R.id.fragment_container, alertDetailsFragment)
     transaction.addToBackStack(null)
+
     transaction.commit()
   }
 }
