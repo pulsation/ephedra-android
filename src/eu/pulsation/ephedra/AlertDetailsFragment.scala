@@ -56,6 +56,8 @@ class AlertDetailsFragment extends Fragment {
     
     detailsText.setText(Html.fromHtml(htmlString))
     detailsText.setMovementMethod(LinkMovementMethod.getInstance())
+    titleText.setText(args.getString("title"))
+
     webLinkButton.setOnClickListener(new View.OnClickListener () {
       def onClick(v: View) {
         val browserIntent : Intent = new Intent(Intent.ACTION_VIEW, Uri.parse(args.getString("link")))

@@ -48,7 +48,10 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
     lazy val ephedraAlarmHelper = new AlarmHelper(this)
 
     super.onCreate(savedInstanceState)
+
     setContentView(R.layout.main)
+
+    ephedraAlarmHelper.startAlarm()
 
     if (findViewById(R.id.fragment_container) != null) {
       // Fragment container exists.
