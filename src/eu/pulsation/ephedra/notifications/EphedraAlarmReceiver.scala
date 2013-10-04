@@ -11,8 +11,7 @@ import scala.util.matching.Regex
 * sound and it vibrates the phone.
 *
 */
-class EphedraAlarmReceiver extends BroadcastReceiver 
-{
+class EphedraAlarmReceiver extends BroadcastReceiver {
 
   private final val TAG = "eu.pulsation.ephedra.EphedraAlarmReceiver"
 
@@ -30,7 +29,7 @@ class EphedraAlarmReceiver extends BroadcastReceiver
     }
     if (!unnotifiedItems.isEmpty) {
       new NotificationDisplayer(context).displayRSSNotification(unnotifiedItems)
-      // TODO: mark entries notified once displayed
+      rssFeed.items.foreach(item => preferences.addNotifiedRSSEntry(item.guid))
     }
   }
 }
