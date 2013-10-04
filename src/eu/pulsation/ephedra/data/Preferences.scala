@@ -22,23 +22,23 @@ class Preferences(context: Context) {
     sharedPreferences.getStringSet(entriesKind, Set[String]()).asScala.toSet
   }
 
-  def addRSSEntry(entryKind: String)(rssEntry: String) {
+  def addRSSEntry(entryKind: String)(rssEntry: String){
     editor.putStringSet(entryKind, getRSSEntries(entryKind) + rssEntry)
     editor.apply()
   }
 
   /**
-   * Returns RSS entries that have already been notified
+   * Returns RSS entries that have already been viewed
    */
-  lazy val notifiedRSSEntries : Set[String] = {
-    getRSSEntries(context.getResources().getString(R.string.notified_rss_entries))
+  lazy val viewedRSSEntries : Set[String] = {
+    getRSSEntries(context.getResources().getString(R.string.viewed_rss_entries))
   }
 
   /**
-   * Adds an RSS to the list of notified entries
+   * Adds an RSS to the list of viewed entries
    */
   def addNotifiedRSSEntry(rssEntry : String) {
-   addRSSEntry(context.getResources().getString(R.string.notified_rss_entries))(rssEntry)
+   addRSSEntry(context.getResources().getString(R.string.viewed_rss_entries))(rssEntry)
   }
 
   /**

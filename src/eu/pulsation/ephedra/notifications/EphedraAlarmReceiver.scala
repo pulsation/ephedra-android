@@ -19,16 +19,15 @@ class EphedraAlarmReceiver extends BroadcastReceiver {
 
     lazy val preferences = new Preferences(context)
 
-
     val rssFeed = new RSSFeed(context.getResources().getString(R.string.rss_feed))
 
-    val unnotifiedItems : List[RSSItem] = rssFeed.items.filter(item => !preferences.notifiedRSSEntries.contains(item.guid))
+    val unviewedItems : List[RSSItem] = rssFeed.items.filter(item => !preferences.viewedRSSEntries.contains(item.guid))
 
     if (BuildConfig.DEBUG) {
       Log.v(TAG, "About to build notification")
     }
-    if (!unnotifiedItems.isEmpty) {
-      new NotificationDisplayer(context).displayRSSNotification(unnotifiedItems)
+    if (!unviewedItems.isEmpty) {
+      new NotificationDisplayer(context).displayRSSNotification(unviewedItems)
       rssFeed.items.foreach(item => preferences.addNotifiedRSSEntry(item.guid))
     }
   }
