@@ -13,7 +13,7 @@ class AlarmHelper(context: Context) {
       case _ => throw new ClassCastException
     }
   }
-    
+
   def startAlarm() {
 
     val am:AlarmManager = this.alarmManager
