@@ -3,6 +3,9 @@ package eu.pulsation.ephedra
 import android.content.{BroadcastReceiver, Context, Intent}
 import android.util.Log
 import scala.util.matching.Regex
+import scala.concurrent._
+import ExecutionContext.Implicits.global
+import scala.language.implicitConversions
 
 /**
 * The alarm receiver is triggered when a scheduled alarm is fired. This class
@@ -19,16 +22,21 @@ class EphedraAlarmReceiver extends BroadcastReceiver {
 
     lazy val preferences = new Preferences(context)
 
-    val rssFeed = new RSSFeed(context.getResources().getString(R.string.rss_feed))
-
-    val unviewedItems : List[RSSItem] = rssFeed.items.filter(item => !preferences.viewedRSSEntries.contains(item.guid))
-
-    if (BuildConfig.DEBUG) {
-      Log.v(TAG, "About to build notification")
+    val promise : Future[List[RSSItem]] = future {
+      (new RSSFeed(context.getResources().getString(R.string.rss_feed))).items
     }
-    if (!unviewedItems.isEmpty) {
-      new NotificationDisplayer(context).displayRSSNotification(unviewedItems)
-      rssFeed.items.foreach(item => preferences.addNotifiedRSSEntry(item.guid))
+
+    promise onSuccess {
+      case items => {
+        val unviewedItems = items.filter(item => !preferences.viewedRSSEntries.contains(item.guid))
+        if (BuildConfig.DEBUG) {
+          Log.v(TAG, "About to build notification")
+        }
+        if (!unviewedItems.isEmpty) {
+          new NotificationDisplayer(context).displayRSSNotification(unviewedItems)
+          items.foreach(item => preferences.addNotifiedRSSEntry(item.guid))
+        }
+      }
     }
   }
 }
