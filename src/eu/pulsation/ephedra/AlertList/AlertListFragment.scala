@@ -39,7 +39,7 @@ class AlertListFragment(val preferences: Preferences) extends ListFragment {
 
     viewedRSSItems.subscribe(preferences.viewedRSSItemsSubscriber)
 
-    val adapter = new RSSItemsArrayAdapter(activity, android.R.layout.simple_list_item_1)
+    val adapter = new RSSItemsArrayAdapter(activity, android.R.layout.simple_list_item_1, preferences.readRSSEntries)
 
     this.setListAdapter(adapter)
     

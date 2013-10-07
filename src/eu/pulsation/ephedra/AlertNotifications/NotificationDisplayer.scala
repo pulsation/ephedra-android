@@ -20,6 +20,9 @@ class NotificationDisplayer (context: Context) {
   }
 
   def displayRSSNotification(items: List[RSSItem]) {
+
+    Log.v(TAG, "About to display notifications.")
+
     val notificationBuilder = builder
     .setSmallIcon(R.drawable.ic_launcher)
     .setContentIntent(contentIntent)

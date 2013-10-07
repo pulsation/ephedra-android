@@ -5,9 +5,13 @@ import scala.collection.JavaConversions._
 import android.widget.{ArrayAdapter,TextView}
 import android.view.{View, ViewGroup}
 import android.content.Context
+import android.text.Html
+import android.util.Log
 
-class RSSItemsArrayAdapter(context: Context, itemViewResourceId: Int)  
+class RSSItemsArrayAdapter(context: Context, itemViewResourceId: Int, readItems: Set[String])  
   extends ArrayAdapter[RSSItem](context, itemViewResourceId) {
+
+  final private val TAG="eu.pulsation.ephedra.RSSItemsArrayAdapter"
 
   override def getView(position: Int, convertView: View, parent: ViewGroup) : View = {
     val view = {
@@ -26,7 +30,16 @@ class RSSItemsArrayAdapter(context: Context, itemViewResourceId: Int)
     val rssItem = getItem(position)
 
     if (rssItem != null) {
-      textView.setText(rssItem.title)
+      val displayedText = {
+        if (readItems.exists(rssItem.guid == _)) {
+          Log.v(TAG, "Alread read!")
+          rssItem.title
+        } else {
+          Log.v(TAG, "Not read yet!")
+          "<b>" + rssItem.title + "</b>"
+        }
+      }
+      textView.setText(Html.fromHtml(displayedText))
     }
     view
   }

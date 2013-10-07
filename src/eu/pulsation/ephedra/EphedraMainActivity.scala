@@ -61,6 +61,7 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
     readRSSItem.subscribe(preferences.readRSSItemSubscriber)
 
     // Display notifications
+    Log.v(TAG, "Starting notificataion alarm.")
     ephedraAlarmHelper.startAlarm()
 
     // Display list view

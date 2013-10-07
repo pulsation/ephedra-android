@@ -4,10 +4,13 @@ import java.util.{Date}
 import android.content.{Context, BroadcastReceiver} 
 import android.app.{AlarmManager, PendingIntent} 
 import android.content.{Intent, IntentFilter}
+import android.util.Log
 
 class AlarmHelper(context: Context) {
 
-    private lazy val alarmManager : AlarmManager = {
+  private final val TAG = "eu.pulsation.ephedra.AlarmHelper"
+
+  private lazy val alarmManager : AlarmManager = {
     context.getSystemService(Context.ALARM_SERVICE) match {
       case am: AlarmManager => am
       case _ => throw new ClassCastException
@@ -16,11 +19,13 @@ class AlarmHelper(context: Context) {
 
   def startAlarm() {
 
+    Log.v(TAG, "Entered startAlarm()")
+
     val am:AlarmManager = this.alarmManager
 
     val ephedraBroadcastReceiver:BroadcastReceiver = new EphedraAlarmReceiver()
 
-    context.registerReceiver (ephedraBroadcastReceiver, new IntentFilter ("ephadraAlarm.getNotifications"))
+    context.registerReceiver (ephedraBroadcastReceiver, new IntentFilter ("ephedraAlarm.getNotifications"))
 
     val receiverIntent:Intent = new Intent()
     receiverIntent.setAction("ephedraAlarm.getNotifications")
