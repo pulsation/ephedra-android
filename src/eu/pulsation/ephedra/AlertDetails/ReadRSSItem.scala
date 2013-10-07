@@ -26,7 +26,7 @@ case class RSSItemReadEvent (rssItem: RSSItem)
 
 class ReadRSSItem extends Publisher[RSSItemReadEvent] {
   
-  def update(rssItem: RSSItem) {
+  def add(rssItem: RSSItem) {
     this.publish(RSSItemReadEvent(rssItem))
   }
 }

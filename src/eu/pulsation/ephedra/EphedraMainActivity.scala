@@ -11,12 +11,20 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
 
   final private val TAG="eu.pulsation.ephedra.EphedraMainActivity"
 
+  lazy val preferences = {
+    new Preferences(this) 
+  }
+
   lazy val alertListFragment = {
-    new AlertListFragment()
+    new AlertListFragment(preferences)
   }
 
   lazy val alertDetailsFragment = {
     new AlertDetailsFragment()
+  }
+
+  lazy val readRSSItem = {
+    new ReadRSSItem()
   }
 
   /**
@@ -49,10 +57,14 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
 
     super.onCreate(savedInstanceState)
 
-    setContentView(R.layout.main)
+    // Subscribe to item read event
+    readRSSItem.subscribe(preferences.readRSSItemSubscriber)
 
+    // Display notifications
     ephedraAlarmHelper.startAlarm()
 
+    // Display list view
+    setContentView(R.layout.main)
     if (findViewById(R.id.fragment_container) != null) {
       // Fragment container exists.
       if (savedInstanceState == null) {
@@ -85,5 +97,7 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
     transaction.addToBackStack(null)
 
     transaction.commit()
+
+    readRSSItem.add(rssItem)
   }
 }

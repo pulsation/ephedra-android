@@ -65,9 +65,10 @@ class Preferences(context: Context) extends ViewedRSSItemsSubscriber
    */
   override def notifyViewedRSSItems(pub: Publisher[RSSItemsViewedEvent], event: RSSItemsViewedEvent) {
     addReadRSSEntries(event.rssItems.map(item => item.guid).toSet)
+    Log.v(TAG, "Entries added to viewed RSS items")
   }
 
   override def notifyReadRSSItem(pub: Publisher[RSSItemReadEvent], event: RSSItemReadEvent) {
-    Log.v(TAG, "TODO: notifyReadItem")
+    Log.v(TAG, "TODO: notifyReadRSSItem: " + event.rssItem.guid)
   }
 }

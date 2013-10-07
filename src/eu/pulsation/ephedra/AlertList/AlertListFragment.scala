@@ -14,7 +14,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class AlertListFragment extends ListFragment {
+class AlertListFragment(val preferences: Preferences) extends ListFragment {
 
   final private val TAG="eu.pulsation.ephedra.AlertListFragment"
   
@@ -32,8 +32,6 @@ class AlertListFragment extends ListFragment {
 
   // The RSS items that have been displayed in the list, not to be notified next time
   lazy val viewedRSSItems = new ViewedRSSItems()
-
-  lazy val preferences = new Preferences(activity)
 
   /** Called when the activity is first created. */
   override def onCreate(savedInstanceState: Bundle) {
