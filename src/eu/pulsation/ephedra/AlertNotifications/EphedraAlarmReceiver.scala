@@ -31,7 +31,6 @@ class EphedraAlarmReceiver extends BroadcastReceiver {
         val unviewedItems = items
         if (!unviewedItems.isEmpty) {
           new NotificationDisplayer(context).displayRSSNotification(unviewedItems)
-          items.foreach(item => preferences.addViewedRSSEntry(item.guid))
         }
       }
     }

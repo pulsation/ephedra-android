@@ -2,10 +2,11 @@ package eu.pulsation.ephedra
 
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._
+import scala.collection.mutable.{Subscriber, Publisher}
 
 import android.content.Context
 
-class Preferences(context: Context) {
+class Preferences(context: Context) extends Subscriber[RSSItemsViewedEvent, Publisher[RSSItemsViewedEvent]] {
 
   /**
    * Returns shared preferences object
@@ -22,8 +23,8 @@ class Preferences(context: Context) {
     sharedPreferences.getStringSet(entriesKind, Set[String]()).asScala.toSet
   }
 
-  def addRSSEntry(entryKind: String)(rssEntry: String){
-    editor.putStringSet(entryKind, getRSSEntries(entryKind) + rssEntry)
+  def addRSSEntries(entryKind: String)(rssEntries: Set[String]){
+    editor.putStringSet(entryKind, getRSSEntries(entryKind) ++ rssEntries)
     editor.apply()
   }
 
@@ -37,8 +38,8 @@ class Preferences(context: Context) {
   /**
    * Adds an RSS to the list of viewed entries
    */
-  def addViewedRSSEntry(rssEntry : String) {
-   addRSSEntry(context.getResources().getString(R.string.viewed_rss_entries)) _
+  def addViewedRSSEntries(rssEntries : Set[String]) {
+   addRSSEntries(context.getResources().getString(R.string.viewed_rss_entries)) _
   }
 
   /**
@@ -51,7 +52,14 @@ class Preferences(context: Context) {
   /**
    * Adds an RSS to the list of read entries
    */
-  def addReadRSSEntry(rssEntry : String) {
-   addRSSEntry(context.getResources().getString(R.string.read_rss_entries)) _
+  def addReadRSSEntries(rssEntry : Set[String]) {
+   addRSSEntries(context.getResources().getString(R.string.read_rss_entries)) _
+  }
+
+  /**
+   * Some RSS items have been viewed. We must store which ones.
+   */
+  override def notify(pub: Publisher[RSSItemsViewedEvent], event: RSSItemsViewedEvent) {
+
   }
 }
