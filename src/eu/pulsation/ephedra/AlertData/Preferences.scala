@@ -5,8 +5,12 @@ import scala.collection.JavaConverters._
 import scala.collection.mutable.{Subscriber, Publisher}
 
 import android.content.Context
+import android.util.Log
 
-class Preferences(context: Context) extends Subscriber[RSSItemsViewedEvent, Publisher[RSSItemsViewedEvent]] {
+class Preferences(context: Context) extends ViewedRSSItemsSubscriber
+                                    with ReadRSSItemSubscriber {
+
+  final val TAG : String = "eu.pulsation.ephedra.Preferences"
 
   /**
    * Returns shared preferences object
@@ -59,7 +63,11 @@ class Preferences(context: Context) extends Subscriber[RSSItemsViewedEvent, Publ
   /**
    * Some RSS items have been viewed. We must store which ones.
    */
-  override def notify(pub: Publisher[RSSItemsViewedEvent], event: RSSItemsViewedEvent) {
+  override def notifyViewedRSSItems(pub: Publisher[RSSItemsViewedEvent], event: RSSItemsViewedEvent) {
     addReadRSSEntries(event.rssItems.map(item => item.guid).toSet)
+  }
+
+  override def notifyReadRSSItem(pub: Publisher[RSSItemReadEvent], event: RSSItemReadEvent) {
+    Log.v(TAG, "TODO: notifyReadItem")
   }
 }
