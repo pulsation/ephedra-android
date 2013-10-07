@@ -2,13 +2,13 @@ package eu.pulsation.ephedra
 
 import scala.collection.mutable.{Publisher, Subscriber}
 
-trait ReadRSSItemSubscriber {
+trait ReadRSSItemsSubscriber {
   self =>
 
   /**
    * Use composition for subscriber as using twice the same trait is not allowed
    */
-  val readRSSItemSubscriber = new Subscriber[RSSItemReadEvent, Publisher[RSSItemReadEvent]] {
+  val readRSSItemsSubscriber = new Subscriber[RSSItemReadEvent, Publisher[RSSItemReadEvent]] {
 
     def notify(pub: Publisher[RSSItemReadEvent], event: RSSItemReadEvent) {
       self.notifyReadRSSItem(pub, event)
@@ -24,7 +24,7 @@ trait ReadRSSItemSubscriber {
  */
 case class RSSItemReadEvent (rssItem: RSSItem)
 
-class ReadRSSItem extends Publisher[RSSItemReadEvent] {
+class ReadRSSItems extends Publisher[RSSItemReadEvent] {
   
   def add(rssItem: RSSItem) {
     this.publish(RSSItemReadEvent(rssItem))

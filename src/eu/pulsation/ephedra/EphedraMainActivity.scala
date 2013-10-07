@@ -23,8 +23,8 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
     new AlertDetailsFragment()
   }
 
-  lazy val readRSSItem = {
-    new ReadRSSItem()
+  lazy val readRSSItems = {
+    new ReadRSSItems()
   }
 
   /**
@@ -58,7 +58,7 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
     super.onCreate(savedInstanceState)
 
     // Subscribe to item read event
-    readRSSItem.subscribe(preferences.readRSSItemSubscriber)
+    readRSSItems.subscribe(preferences.readRSSItemsSubscriber)
 
     // Display notifications
     Log.v(TAG, "Starting notificataion alarm.")
@@ -97,8 +97,8 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
     transaction.replace(R.id.fragment_container, alertDetailsFragment)
     transaction.addToBackStack(null)
 
-    transaction.commit()
+    transaction.apply()
 
-    readRSSItem.add(rssItem)
+    readRSSItems.add(rssItem)
   }
 }

@@ -8,7 +8,7 @@ import android.content.Context
 import android.util.Log
 
 class Preferences(context: Context) extends ViewedRSSItemsSubscriber
-                                    with ReadRSSItemSubscriber {
+                                    with ReadRSSItemsSubscriber {
 
   final val TAG : String = "eu.pulsation.ephedra.Preferences"
 
