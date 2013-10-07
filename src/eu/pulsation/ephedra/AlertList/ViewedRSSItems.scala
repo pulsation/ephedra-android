@@ -1,6 +1,6 @@
 package eu.pulsation.ephedra
 
-import scala.collection.mutable.{Publisher, Subscriber}
+import scala.collection.mutable.Publisher
 
 /**
  * Some RSS items have been viewed in the list screen.
