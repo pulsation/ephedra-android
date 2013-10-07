@@ -38,7 +38,7 @@ class Preferences(context: Context) {
    * Adds an RSS to the list of viewed entries
    */
   def addNotifiedRSSEntry(rssEntry : String) {
-   addRSSEntry(context.getResources().getString(R.string.viewed_rss_entries))(rssEntry)
+   addRSSEntry(context.getResources().getString(R.string.viewed_rss_entries)) _
   }
 
   /**
@@ -52,6 +52,6 @@ class Preferences(context: Context) {
    * Adds an RSS to the list of read entries
    */
   def addReadRSSEntry(rssEntry : String) {
-   addRSSEntry(context.getResources().getString(R.string.read_rss_entries))(rssEntry)
+   addRSSEntry(context.getResources().getString(R.string.read_rss_entries)) _
   }
 }
