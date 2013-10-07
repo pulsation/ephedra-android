@@ -29,9 +29,6 @@ class EphedraAlarmReceiver extends BroadcastReceiver {
     promise onSuccess {
       case items => {
         val unviewedItems = items
-        if (BuildConfig.DEBUG) {
-          Log.v(TAG, "About to build notification")
-        }
         if (!unviewedItems.isEmpty) {
           new NotificationDisplayer(context).displayRSSNotification(unviewedItems)
           items.foreach(item => preferences.addViewedRSSEntry(item.guid))
