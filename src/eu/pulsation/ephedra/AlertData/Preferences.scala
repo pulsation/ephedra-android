@@ -60,6 +60,6 @@ class Preferences(context: Context) extends Subscriber[RSSItemsViewedEvent, Publ
    * Some RSS items have been viewed. We must store which ones.
    */
   override def notify(pub: Publisher[RSSItemsViewedEvent], event: RSSItemsViewedEvent) {
-
+    addReadRSSEntries(event.rssItems.map(item => item.guid).toSet)
   }
 }
