@@ -26,7 +26,12 @@ class AlertListFragment extends ListFragment {
   }
 
   lazy val activity = this.getActivity()
+
+  // The RSS item that has been selected
   lazy val selectedRSSItem = new SelectedRSSItem()
+
+  // The RSS items that have been displayed in the list, not to be notified next time
+  lazy val viewedRSSItems = new ViewedRSSItems()
 
   /** Called when the activity is first created. */
   override def onCreate(savedInstanceState: Bundle) {
@@ -45,6 +50,7 @@ class AlertListFragment extends ListFragment {
         activity.runOnUiThread({
           adapter.addAll(items)
         })
+        viewedRSSItems.update(items)
       }
     }
 
