@@ -34,7 +34,7 @@ class EphedraAlarmReceiver extends BroadcastReceiver {
         }
         if (!unviewedItems.isEmpty) {
           new NotificationDisplayer(context).displayRSSNotification(unviewedItems)
-          items.foreach(item => preferences.addNotifiedRSSEntry(item.guid))
+          items.foreach(item => preferences.addViewedRSSEntry(item.guid))
         }
       }
     }
