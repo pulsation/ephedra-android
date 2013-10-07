@@ -23,12 +23,12 @@ class EphedraAlarmReceiver extends BroadcastReceiver {
     lazy val preferences = new Preferences(context)
 
     val promise : Future[List[RSSItem]] = future {
-      (new RSSFeed(context.getResources().getString(R.string.rss_feed))).items
+      (new RSSFeed(context.getResources().getString(R.string.rss_feed))).items.filter(item => !preferences.viewedRSSEntries.contains(item.guid))
     }
 
     promise onSuccess {
       case items => {
-        val unviewedItems = items.filter(item => !preferences.viewedRSSEntries.contains(item.guid))
+        val unviewedItems = items
         if (BuildConfig.DEBUG) {
           Log.v(TAG, "About to build notification")
         }
