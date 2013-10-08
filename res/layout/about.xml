@@ -21,7 +21,7 @@
       >
       <TextView 
         android:id = "@+id/about_details"
-        android:text = "Details"
+        android:text = "@+string/about_text"
         android:layout_width = "match_parent"
         android:layout_height = "wrap_content"
         android:layout_gravity="right"
