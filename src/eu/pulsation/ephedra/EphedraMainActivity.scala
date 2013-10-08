@@ -23,6 +23,10 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
     new AlertDetailsFragment()
   }
 
+  lazy val aboutFragment = {
+    new AboutFragment()
+  }
+
   lazy val readRSSItems = {
     new ReadRSSItems()
   }
@@ -86,7 +90,7 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
         true
       }
       case R.id.about => {
-        Log.v(TAG, "About pressed.")
+        switchToFragment(aboutFragment)
         true
       }
       case _ => super.onOptionsItemSelected(item)
