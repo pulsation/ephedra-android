@@ -40,7 +40,7 @@ class Preferences(context: Context) extends ViewedRSSItemsSubscriber
   /**
    * Returns RSS entries that have already been viewed
    */
-  lazy val viewedRSSEntries : Set[String] = {
+  def viewedRSSEntries : Set[String] = {
     getRSSEntries(context.getResources().getString(R.string.viewed_rss_entries))
   }
 
@@ -54,7 +54,7 @@ class Preferences(context: Context) extends ViewedRSSItemsSubscriber
   /**
    * Returns RSS entries that have already been read
    */
-  lazy val readRSSEntries : Set[String] = {
+  def readRSSEntries : Set[String] = {
     Log.v(TAG, "Read RSS entries:")
     val result = getRSSEntries(context.getResources().getString(R.string.read_rss_entries))
     result.foreach(Log.v(TAG, _))

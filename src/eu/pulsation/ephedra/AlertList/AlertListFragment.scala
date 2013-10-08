@@ -33,13 +33,18 @@ class AlertListFragment(val preferences: Preferences) extends ListFragment {
   // The RSS items that have been displayed in the list, not to be notified next time
   lazy val viewedRSSItems = new ViewedRSSItems()
 
+  override def onStart() {
+
+    super.onStart()
+  }
+
   /** Called when the activity is first created. */
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
 
     viewedRSSItems.subscribe(preferences.viewedRSSItemsSubscriber)
 
-    val adapter = new RSSItemsArrayAdapter(activity, android.R.layout.simple_list_item_1, preferences.readRSSEntries)
+    val adapter = new RSSItemsArrayAdapter(activity, android.R.layout.simple_list_item_1, preferences)
 
     this.setListAdapter(adapter)
     

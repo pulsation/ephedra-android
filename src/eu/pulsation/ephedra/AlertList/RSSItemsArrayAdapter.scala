@@ -8,7 +8,7 @@ import android.content.Context
 import android.text.Html
 import android.util.Log
 
-class RSSItemsArrayAdapter(context: Context, itemViewResourceId: Int, readItems: Set[String])  
+class RSSItemsArrayAdapter(context: Context, itemViewResourceId: Int, preferences: Preferences)  
   extends ArrayAdapter[RSSItem](context, itemViewResourceId) {
 
   final private val TAG="eu.pulsation.ephedra.RSSItemsArrayAdapter"
@@ -27,11 +27,13 @@ class RSSItemsArrayAdapter(context: Context, itemViewResourceId: Int, readItems:
       case _ => throw new ClassCastException
     }
 
+    lazy val readRSSEntries = preferences.readRSSEntries
+
     val rssItem = getItem(position)
 
     if (rssItem != null) {
       val displayedText = {
-        if (readItems.exists(rssItem.guid == _)) {
+        if (readRSSEntries.exists(rssItem.guid == _)) {
           Log.v(TAG, "Alread read!")
           rssItem.title
         } else {
