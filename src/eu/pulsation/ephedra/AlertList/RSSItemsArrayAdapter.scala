@@ -8,7 +8,7 @@ import android.content.Context
 import android.text.Html
 import android.util.Log
 
-class RSSItemsArrayAdapter(context: Context, itemViewResourceId: Int, preferences: Preferences)  
+class RSSItemsArrayAdapter(context: Context, itemViewResourceId: Int, rssStoredData: RSSStoredData)  
   extends ArrayAdapter[RSSItem](context, itemViewResourceId) {
 
   final private val TAG="eu.pulsation.ephedra.RSSItemsArrayAdapter"
@@ -27,7 +27,7 @@ class RSSItemsArrayAdapter(context: Context, itemViewResourceId: Int, preference
       case _ => throw new ClassCastException
     }
 
-    lazy val readRSSEntries = preferences.readRSSEntries
+    lazy val readRSSEntries = rssStoredData.readRSSEntries
 
     val rssItem = getItem(position)
 

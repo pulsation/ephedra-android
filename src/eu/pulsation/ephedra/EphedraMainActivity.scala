@@ -11,12 +11,12 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
 
   final private val TAG="eu.pulsation.ephedra.EphedraMainActivity"
 
-  lazy val preferences = {
-    new Preferences(this) 
+  lazy val rssStoredData = {
+    new RSSStoredData(this) 
   }
 
   lazy val alertListFragment = {
-    new AlertListFragment(preferences)
+    new AlertListFragment(rssStoredData)
   }
 
   lazy val alertDetailsFragment = {
@@ -58,7 +58,7 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
     super.onCreate(savedInstanceState)
 
     // Subscribe to item read event
-    readRSSItems.subscribe(preferences.readRSSItemsSubscriber)
+    readRSSItems.subscribe(rssStoredData.readRSSItemsSubscriber)
 
     // Display notifications
     ephedraAlarmHelper.startAlarm()

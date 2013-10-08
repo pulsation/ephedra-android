@@ -27,21 +27,21 @@ class AlertDetailsFragment extends Fragment {
   def view = getView()
 
   def detailsText : TextView = {
-    view.findViewById(R.id.details) match {
+    view.findViewById(R.id.alert_details_text) match {
       case txt: TextView => txt
       case _ => throw new ClassCastException
     }
   }
 
   def titleText : TextView = {
-    view.findViewById(R.id.title) match {
+    view.findViewById(R.id.alert_details_title) match {
       case txt : TextView => txt
       case _ => throw new ClassCastException
     }
   }
 
   def webLinkButton : Button = {
-    view.findViewById(R.id.web_link_button) match {
+    view.findViewById(R.id.alert_details_web_button) match {
       case but : Button => but
       case _ => throw new ClassCastException
     }

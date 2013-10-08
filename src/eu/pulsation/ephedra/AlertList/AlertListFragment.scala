@@ -14,7 +14,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class AlertListFragment(val preferences: Preferences) extends ListFragment {
+class AlertListFragment(val rssStoredData: RSSStoredData) extends ListFragment {
 
   final private val TAG="eu.pulsation.ephedra.AlertListFragment"
   
@@ -42,9 +42,9 @@ class AlertListFragment(val preferences: Preferences) extends ListFragment {
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
 
-    viewedRSSItems.subscribe(preferences.viewedRSSItemsSubscriber)
+    viewedRSSItems.subscribe(rssStoredData.viewedRSSItemsSubscriber)
 
-    val adapter = new RSSItemsArrayAdapter(activity, android.R.layout.simple_list_item_1, preferences)
+    val adapter = new RSSItemsArrayAdapter(activity, android.R.layout.simple_list_item_1, rssStoredData)
 
     this.setListAdapter(adapter)
     

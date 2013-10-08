@@ -20,10 +20,10 @@ class EphedraAlarmReceiver extends BroadcastReceiver {
 
   override def onReceive(context: Context, intent: Intent) {
 
-    lazy val preferences = new Preferences(context)
+    lazy val rssStoredData = new RSSStoredData(context)
 
     val promise : Future[List[RSSItem]] = future {
-      (new RSSFeed(context.getResources().getString(R.string.rss_feed))).items.filter(item => !preferences.viewedRSSEntries.contains(item.guid))
+      (new RSSFeed(context.getResources().getString(R.string.rss_feed))).items.filter(item => !rssStoredData.viewedRSSEntries.contains(item.guid))
     }
 
     promise onSuccess {
