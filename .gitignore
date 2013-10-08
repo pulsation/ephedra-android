@@ -28,6 +28,7 @@ proguard/
 *.iws
 .idea/
 *.swp
+*.swo
 
 target/
 lib_managed/
