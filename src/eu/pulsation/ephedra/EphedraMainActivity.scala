@@ -61,7 +61,6 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
     readRSSItems.subscribe(preferences.readRSSItemsSubscriber)
 
     // Display notifications
-    Log.v(TAG, "Starting notificataion alarm.")
     ephedraAlarmHelper.startAlarm()
 
     // Display list view
@@ -82,7 +81,14 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
 
   override def onOptionsItemSelected(item: MenuItem) : Boolean = {
     item.getItemId() match {
-      case 0 => true
+      case R.id.parameters => {
+        Log.v(TAG, "Parameters pressed.")
+        true
+      }
+      case R.id.about => {
+        Log.v(TAG, "About pressed.")
+        true
+      }
       case _ => super.onOptionsItemSelected(item)
     }
   }
