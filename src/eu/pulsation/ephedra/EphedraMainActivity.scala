@@ -97,7 +97,7 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
     transaction.replace(R.id.fragment_container, alertDetailsFragment)
     transaction.addToBackStack(null)
 
-    transaction.apply()
+    transaction.commit()
 
     readRSSItems.add(rssItem)
   }
