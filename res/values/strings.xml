@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">Alertes alimentaires</string>
-  <string name="prefs_name">ephedraPreferences</string>
-  <string name="read_rss_entries">readRSSEntries</string>
-  <string name="viewed_rss_entries">viewedRSSEntries</string>
-  <string name="rss_feed">http://alimentation.gouv.fr/spip.php?page=backend&amp;id_rubrique=71</string>
   <string name="new_alert">Alerte alimentaire</string>
   <string name="new_alerts">alertes alimentaires</string>
   <string name="parameters">Paramètres</string>

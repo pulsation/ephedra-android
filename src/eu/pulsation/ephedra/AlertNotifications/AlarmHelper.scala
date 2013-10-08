@@ -32,7 +32,7 @@ class AlarmHelper(context: Context) {
 
     val scheduledReceiver:PendingIntent = PendingIntent.getBroadcast(this.context, 0, receiverIntent, PendingIntent.FLAG_CANCEL_CURRENT)
 
-    am.setRepeating(AlarmManager.RTC_WAKEUP, new Date().getTime() , 1000 * 120, scheduledReceiver)
+    am.setRepeating(AlarmManager.RTC_WAKEUP, new Date().getTime() , 1000 * context.getResources().getInteger(R.integer.notifications_frequency), scheduledReceiver)
 
   }
 
