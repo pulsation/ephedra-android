@@ -19,9 +19,38 @@ class AboutFragment extends Fragment {
 
   final private val TAG="eu.pulsation.ephedra.AboutFragment"
   
-  // Needed to be converted in a Runnable called by runOnUiThread()
   override def onCreateView(inflater: LayoutInflater, container: ViewGroup, savedInstanceState: Bundle):View = {
     inflater.inflate(R.layout.about, container, false)
+  }
+
+  def dataOriginDetails : TextView = {
+    getView().findViewById(R.id.about_data_origin_details) match {
+      case txt: TextView => txt
+      case _ => throw new ClassCastException
+    }
+  }
+
+  def responsabilityDetails : TextView = {
+    getView().findViewById(R.id.about_data_responsability_details) match {
+      case txt: TextView => txt
+      case _ => throw new ClassCastException
+    }
+  }
+
+  def dataUseConditions : TextView = {
+    getView().findViewById(R.id.about_data_use_conditions) match {
+      case txt: TextView => txt
+      case _ => throw new ClassCastException
+    }
+  }
+
+  override def onStart() {
+    // Activate web links
+    dataOriginDetails.setMovementMethod(LinkMovementMethod.getInstance())
+    responsabilityDetails.setMovementMethod(LinkMovementMethod.getInstance())
+    dataUseConditions.setMovementMethod(LinkMovementMethod.getInstance())
+    
+    super.onStart()
   }
 
   override def onCreate(savedInstanceState: Bundle) {

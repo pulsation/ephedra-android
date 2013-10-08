@@ -1,10 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="about_text">
-    About text
-  </string>
   <string name="about_title">
-    A propos de l\'application
+    A propos de cette application
+  </string>
+
+  <string name="about_personal_data_title">
+    <u>Données personnelles</u>
+  </string>
+  <string name="about_personal_data_details">
+      L\'application <i>Alertes Alimentaires</i> ne collecte pas de données personnelles.
+  </string>
+
+  <string name="about_data_origin_title">
+    <u>Origine des données</u>
+  </string>
+
+  <string name="about_data_origin_details">
+    Les données diffusées par l\'application <i>Alertes Alimentaires</i> proviennent du site <a href="http://alimentation.gouv.fr">http://alimentation.gouv.fr</a> dont
+      l\'accord a été sollicité pour ce faire.
+  </string>
+
+  <string name="about_responsability_title">
+    <u>Responsabilité</u>
+  </string> 
+
+  <string name="about_responsability_details">
+    En aucun l\'application <i>Alertes Alimentaires</i> n\'est affiliée au site <a href="http://alimentation.gouv.fr">http://alimentation.gouv.fr</a>, 
+    ni au ministère de l\'agriculture, de l\'agroalimentaire et de la forêt, sous quelque forme que ce soit. Par conséquent, 
+    toute responsabilité quant au contenu diffusé, son exactitude ou sa pertinence, est déclinée. Son utilisation se fait donc
+    sous l\'entière et seule responsabilité de l\'utilisateur, qui assume seul la totalité des conséquences pouvant en découler.
+    Les auteurs de l\'application <i>Alertes Alimentaires</i> ne pourront en aucun cas être tenus responsables de tout dommage
+    de quelque nature que ce soit résultant de l\'interprétation ou de l\'utilisation des informations et/ou documents disponibles
+    par le biais de l\'application <i>Alertes Alimentaires</i>.
+  </string>
+
+  <string name="about_data_use_title">
+    <u>Utilisation, reproduction et droits d\'auteur</u>
+  </string>
+
+  <string name="about_data_use_conditions">
+    Les conditions définies sur le site <a href="http://alimentation.gouv.fr/mentions-legales">http://alimentation.gouv.fr/mentions-legales</a> s\'appliquent aux données diffusées par
+    l\'application <i>Alertes Alimentaires</i>:
+  </string>
+  <string name="about_data_use_from_site">
+    L’utilisation des informations, documents ou données non couverts par le droit d’auteur est autorisée à des fins personnelles, associatives ou professionnelles aux conditions suivantes :
+  </string>
+  <string name="about_data_use_sale">
+    <li>les informations, documents ou données ainsi utilisées ne peuvent être vendus, ni loués, ni donner lieux à la perception de redevances ou participations financières à quelque titre que ce soit,</li>
+  </string>
+  <string name="about_data_use_copying">
+    <li>
+      la reproduction sur support papier ou sous forme électronique doit obéir aux principes suivants :
+      respect de l’intégrité des informations, documents ou données reproduites (aucune modification, ni altération d’aucune sorte),
+      citation explicite du site "alimentation.gouv.fr" comme source ;
+      mention que les droits de reproduction sont réservés et strictement limités. 
+    </li>
+  </string>
+  <string name="about_data_use_commercial">
+    <li>Toute utilisation, reproduction ou réutilisation des données du site à des fins commerciales ou publicitaires doit faire l’objet d’une demande préalable et pourra donner lieu à l’établissement d’une convention ou à l’octroi d’une licence. Lorsque la demande concerne des documents ou données soumises à l’accord de l’auteur, le titulaire des droits devra y consentir expressément préalablement à l’établissement d’une convention ou licence d’utilisation à moins qu’il ne soit partie à l’acte.</li>
+  </string>
+  <string name="about_data_use_trademarks">
+    <li>L’utilisation des marques déposées utilisées sur ce site sur tout autre support ou réseau est interdite.</li>
   </string>
 </resources>
 
