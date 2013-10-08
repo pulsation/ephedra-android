@@ -34,10 +34,8 @@ class RSSItemsArrayAdapter(context: Context, itemViewResourceId: Int, preference
     if (rssItem != null) {
       val displayedText = {
         if (readRSSEntries.exists(rssItem.guid == _)) {
-          Log.v(TAG, "Alread read!")
           rssItem.title
         } else {
-          Log.v(TAG, "Not read yet!")
           "<b>" + rssItem.title + "</b>"
         }
       }

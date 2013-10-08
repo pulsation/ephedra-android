@@ -63,7 +63,7 @@ class AlertListFragment(val preferences: Preferences) extends ListFragment {
 
     promise onFailure {
       case error => {
-        Log.v(TAG, error.getMessage)
+        Log.e(TAG, error.getMessage)
         Toast
           .makeText(activity.getApplicationContext(), 
             this.getString(R.string.failed_loading_feed),
@@ -74,7 +74,7 @@ class AlertListFragment(val preferences: Preferences) extends ListFragment {
     
     activity match {
       case mainActivity: EphedraMainActivity => selectedRSSItem.subscribe(mainActivity)
-      case _ => Log.v(TAG, "Could not subscribe to main activity")
+      case _ => Log.e(TAG, "Could not subscribe to main activity")
     }
   }
 
