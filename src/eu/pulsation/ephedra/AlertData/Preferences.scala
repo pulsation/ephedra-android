@@ -43,7 +43,7 @@ class Preferences(context: Context) extends ViewedRSSItemsSubscriber
    * Adds an RSS to the list of viewed entries
    */
   def addViewedRSSEntries(rssEntries : Set[String]) {
-   addRSSEntries(context.getResources().getString(R.string.viewed_rss_entries))(rssEntries)
+    addRSSEntries(context.getResources().getString(R.string.viewed_rss_entries))(rssEntries)
   }
 
   /**

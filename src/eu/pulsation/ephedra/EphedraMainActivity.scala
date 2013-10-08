@@ -2,7 +2,7 @@ package eu.pulsation.ephedra
 
 import android.app.{Activity, Fragment, FragmentTransaction}
 import android.os.Bundle
-import android.view.Menu
+import android.view.{Menu, MenuItem}
 import android.util.Log
 
 import scala.collection.mutable.{Subscriber, Publisher}
@@ -78,6 +78,13 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
   override def onCreateOptionsMenu(menu: Menu) : Boolean = {
     this.getMenuInflater().inflate(R.menu.menu, menu)
     true
+  }
+
+  override def onOptionsItemSelected(item: MenuItem) : Boolean = {
+    item.getItemId() match {
+      case 0 => true
+      case _ => super.onOptionsItemSelected(item)
+    }
   }
 
   // An alert has been selected in the list.
