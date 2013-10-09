@@ -11,12 +11,14 @@
       android:layout_height="wrap_content"
       android:textAppearance="?android:attr/textAppearanceMedium"
       />
-  <Button
+  <ImageButton
     android:id = "@+id/alert_details_web_button"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
     android:text="@string/view_web_link"
     android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:src="@drawable/ic_internet"
     />	
     <ScrollView
         android:id="@+id/scrollview"
@@ -28,6 +30,7 @@
         android:layout_above="@id/alert_details_web_button"
       >
       <TextView 
+        android:textSize="@dimen/alarm_details_font_size"
         android:id = "@+id/alert_details_text"
         android:text = "Details"
         android:layout_width = "match_parent"
