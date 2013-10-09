@@ -23,9 +23,9 @@ class AlarmHelper(context: Context) {
 
     val am:AlarmManager = this.alarmManager
 
-    val ephedraBroadcastReceiver:BroadcastReceiver = new EphedraAlarmReceiver()
+//    val ephedraBroadcastReceiver:BroadcastReceiver = new EphedraAlarmReceiver()
 
-    context.registerReceiver (ephedraBroadcastReceiver, new IntentFilter ("ephedraAlarm.getNotifications"))
+//    context.registerReceiver (ephedraBroadcastReceiver, new IntentFilter ("ephedraAlarm.getNotifications"))
 
     val receiverIntent:Intent = new Intent()
     receiverIntent.setAction("ephedraAlarm.getNotifications")

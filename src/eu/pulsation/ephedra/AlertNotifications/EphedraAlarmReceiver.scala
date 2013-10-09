@@ -23,12 +23,12 @@ class EphedraAlarmReceiver extends BroadcastReceiver {
     lazy val rssStoredData = new RSSStoredData(context)
 
     val promise : Future[List[RSSItem]] = future {
-      (new RSSFeed(context.getResources().getString(R.string.rss_feed))).items.filter(item => !rssStoredData.viewedRSSEntries.contains(item.guid))
+      val rssFeed = new RSSFeed(context.getResources().getString(R.string.rss_feed))
+      rssFeed.items.filter(item => !rssStoredData.viewedRSSEntries.contains(item.guid)) 
     }
 
     promise onSuccess {
-      case items => {
-        val unviewedItems = items
+      case unviewedItems => {
         if (!unviewedItems.isEmpty) {
           new NotificationDisplayer(context).displayRSSNotification(unviewedItems)
         }
