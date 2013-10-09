@@ -16,7 +16,7 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
   }
 
   lazy val alertListFragment = {
-    new AlertListFragment(rssStoredData)
+    new AlertListFragment()
   }
 
   lazy val alertDetailsFragment = {

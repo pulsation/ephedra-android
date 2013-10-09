@@ -14,7 +14,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class AlertListFragment(val rssStoredData: RSSStoredData) extends ListFragment {
+class AlertListFragment extends ListFragment {
 
   final private val TAG="eu.pulsation.ephedra.AlertListFragment"
   
@@ -26,6 +26,8 @@ class AlertListFragment(val rssStoredData: RSSStoredData) extends ListFragment {
   }
 
   lazy val activity = this.getActivity()
+
+  lazy val rssStoredData = new RSSStoredData(activity)
 
   // The RSS item that has been selected
   lazy val selectedRSSItem = new SelectedRSSItem()
