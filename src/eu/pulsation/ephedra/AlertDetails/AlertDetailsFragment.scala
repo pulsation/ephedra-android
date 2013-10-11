@@ -4,7 +4,7 @@ import android.app.Fragment
 import android.os.Bundle
 import android.view.View
 import android.util.Log
-import android.widget.{TextView, ImageButton}
+import android.widget.{TextView, Button}
 import android.webkit.WebView
 import android.text.Html
 import android.text.method.LinkMovementMethod
@@ -40,9 +40,9 @@ class AlertDetailsFragment extends Fragment {
     }
   }
 
-  def webLinkButton : ImageButton = {
+  def webLinkButton : Button = {
     view.findViewById(R.id.alert_details_web_button) match {
-      case but : ImageButton => but
+      case but : Button => but
       case _ => throw new ClassCastException
     }
   }

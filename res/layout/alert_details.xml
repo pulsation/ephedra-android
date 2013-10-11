@@ -11,14 +11,16 @@
       android:layout_height="wrap_content"
       android:textAppearance="?android:attr/textAppearanceMedium"
       />
-  <ImageButton
+  <Button
     android:id = "@+id/alert_details_web_button"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
     android:text="@string/view_web_link"
     android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="false"
     android:layout_alignParentRight="true"
-    android:src="@drawable/ic_internet"
+    android:drawableLeft="@drawable/ic_internet"
+    android:drawablePadding="15sp"
     />	
     <ScrollView
         android:id="@+id/scrollview"
