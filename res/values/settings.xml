@@ -4,5 +4,5 @@
   <string name="read_rss_entries">readRSSEntries</string>
   <string name="viewed_rss_entries">viewedRSSEntries</string>
   <string name="rss_feed">http://alimentation.gouv.fr/spip.php?page=backend&amp;id_rubrique=71</string>
-  <integer name="notifications_frequency">30</integer>
+  <integer name="notifications_frequency">21600</integer>
 </resources>
