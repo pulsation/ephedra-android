@@ -85,10 +85,12 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
 
   override def onOptionsItemSelected(item: MenuItem) : Boolean = {
     item.getItemId() match {
+      /*
       case R.id.parameters => {
         Log.v(TAG, "Parameters pressed.")
         true
       }
+      */
       case R.id.about => {
         switchToFragment(aboutFragment)
         true
