@@ -11,17 +11,34 @@
       android:layout_height="wrap_content"
       android:textAppearance="?android:attr/textAppearanceMedium"
       />
-  <Button
-    android:id = "@+id/alert_details_web_button"
-    android:layout_height="wrap_content"
-    android:layout_width="wrap_content"
-    android:text="@string/view_web_link"
-    android:layout_alignParentBottom="true"
-    android:layout_centerHorizontal="false"
-    android:layout_alignParentRight="true"
-    android:drawableLeft="@drawable/ic_internet"
-    android:drawablePadding="15sp"
-    />	
+    <LinearLayout 
+      android:orientation="horizontal"
+      android:id="@+id/alert_details_buttons"
+      android:layout_height="wrap_content"
+      android:layout_width="match_parent"
+      android:layout_alignParentBottom="true"
+      android:layout_centerHorizontal="false"
+      android:layout_alignParentRight="true"
+      >
+      <Button
+        android:id = "@+id/alert_details_share_button"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:text="@string/share_web_link"
+        android:drawableLeft="@drawable/ic_share"
+        android:drawablePadding="15sp"
+        />	
+      <Button
+        android:id = "@+id/alert_details_web_button"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:text="@string/view_web_link"
+        android:drawableLeft="@drawable/ic_internet"
+        android:drawablePadding="15sp"
+        />	
+    </LinearLayout>
     <ScrollView
         android:id="@+id/scrollview"
         android:fillViewport = "false"
@@ -29,7 +46,7 @@
         android:layout_width = "match_parent"
         android:layout_height = "match_parent"
         android:layout_below="@id/alert_details_title"
-        android:layout_above="@id/alert_details_web_button"
+        android:layout_above="@id/alert_details_buttons"
       >
       <TextView 
         android:textSize="@dimen/alarm_details_font_size"
