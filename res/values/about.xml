@@ -20,18 +20,22 @@
       l\'accord a été sollicité pour ce faire.
   </string>
 
+  <string name="about_data_latency_details">
+  </string>
+
   <string name="about_responsability_title">
     <u>Responsabilité</u>
   </string> 
 
   <string name="about_responsability_details">
-    En aucun l\'application <i>Alertes Alimentaires</i> n\'est affiliée au site <a href="http://alimentation.gouv.fr">http://alimentation.gouv.fr</a>, 
+    L\'application <i>Alertes Alimentaires</i> n\'est ni affiliée au site <a href="http://alimentation.gouv.fr">http://alimentation.gouv.fr</a>, 
     ni au ministère de l\'agriculture, de l\'agroalimentaire et de la forêt, sous quelque forme que ce soit. Par conséquent, 
     toute responsabilité quant au contenu diffusé, son exactitude ou sa pertinence, est déclinée. Son utilisation se fait donc
-    sous l\'entière et seule responsabilité de l\'utilisateur, qui assume seul la totalité des conséquences pouvant en découler.
+    sous l\'entière et seule responsabilité de l\'utilisateur, qui assume la totalité des conséquences pouvant en découler.
     Les auteurs de l\'application <i>Alertes Alimentaires</i> ne pourront en aucun cas être tenus responsables de tout dommage
     de quelque nature que ce soit résultant de l\'interprétation ou de l\'utilisation des informations et/ou documents disponibles
     par le biais de l\'application <i>Alertes Alimentaires</i>.
+    Plusieurs heures peuvent s'écouler entre l'émission d'une alerte sur le site <a href="http://alimentation.gouv.fr">http://alimentation.gouv.fr</a> et sa diffusion par l'application <i>Alertes Alimentaires</i>. Les auteurs de l'application <i>Alertes Alimentaires</i> ne pourront en aucun cas être tenus responsables de la non-diffusion d'une information présente sur le site <a href="http://alimentation.gouv.fr">http://alimentation.gouv.fr</a>.
   </string>
 
   <string name="about_data_use_title">
