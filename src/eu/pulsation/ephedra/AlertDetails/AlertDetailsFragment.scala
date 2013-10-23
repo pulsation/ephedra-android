@@ -47,6 +47,13 @@ class AlertDetailsFragment extends Fragment {
     }
   }
  
+  def shareLinkButton : Button = {
+    view.findViewById(R.id.alert_details_share_button) match {
+      case but : Button => but
+      case _ => throw new ClassCastException
+    }
+  }
+
   override def onStart() {
     val args = getArguments()
 
@@ -62,6 +69,16 @@ class AlertDetailsFragment extends Fragment {
       def onClick(v: View) {
         val browserIntent : Intent = new Intent(Intent.ACTION_VIEW, Uri.parse(args.getString("link")))
         startActivity(browserIntent)
+      }
+    })
+
+    shareLinkButton.setOnClickListener(new View.OnClickListener() {
+      def onClick(v: View) {
+        val shareIntent : Intent = new Intent(Intent.ACTION_SEND)
+        shareIntent.setType("text/plain")
+        shareIntent.putExtra(Intent.EXTRA_TEXT, args.getString("title") + " - " + args.getString("link"))
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, args.getString("title"))
+        startActivity(Intent.createChooser(shareIntent, "Share"))
       }
     })
 
