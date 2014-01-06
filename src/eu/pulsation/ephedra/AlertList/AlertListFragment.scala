@@ -14,6 +14,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
+import rx.lang.scala.subjects.PublishSubject
+
 class AlertListFragment extends ListFragment {
 
   final private val TAG="eu.pulsation.ephedra.AlertListFragment"
@@ -30,7 +32,7 @@ class AlertListFragment extends ListFragment {
   lazy val rssStoredData = new RSSStoredData(activity)
 
   // The RSS item that has been selected
-  lazy val selectedRSSItem = new SelectedRSSItem()
+  lazy val selectedRSSItem = PublishSubject[RSSItem]() /*new SelectedRSSItem()*/
 
   // The RSS items that have been displayed in the list, not to be notified next time
   lazy val viewedRSSItems = new ViewedRSSItems()
@@ -73,11 +75,12 @@ class AlertListFragment extends ListFragment {
           .show()
       }
     }
-    
+   /*
     activity match {
-      case mainActivity: EphedraMainActivity => selectedRSSItem.subscribe(mainActivity)
+      case mainActivity: EphedraMainActivity => selectedRSSItem.subscribe(item => mainActivity.itemSelected(item))
       case _ => Log.e(TAG, "Could not subscribe to main activity")
     }
+    */
   }
 
   override def onListItemClick(lv: ListView, v: View, position: Int, id: Long) {
@@ -86,6 +89,6 @@ class AlertListFragment extends ListFragment {
       case _ => throw new ClassCastException
     }
 
-    selectedRSSItem.update(rssItem)
+    selectedRSSItem.onNext(rssItem)
   }
 }

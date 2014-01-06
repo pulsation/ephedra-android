@@ -9,7 +9,7 @@ import rx.lang.scala.subjects.PublishSubject
 
 import scala.collection.mutable.{Subscriber, Publisher}
 
-class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent, Publisher[RSSItemSelectedEvent]] {
+class EphedraMainActivity extends Activity /*with Subscriber[RSSItemSelectedEvent, Publisher[RSSItemSelectedEvent]]*/ {
 
   final private val TAG="eu.pulsation.ephedra.EphedraMainActivity"
 
@@ -75,6 +75,7 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
       // Fragment container exists.
       if (savedInstanceState == null) {
         // We're not beeing restored from a previous state.
+        alertListFragment.selectedRSSItem.subscribe(item => this.itemSelected(item))
         displayInitialFragment(alertListFragment)
       }
     }
@@ -102,9 +103,9 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
   }
 
   // An alert has been selected in the list.
-  override def notify(pub: Publisher[RSSItemSelectedEvent], event: RSSItemSelectedEvent): Unit = {
+  /*override*/ def itemSelected/*notify(pub: Publisher[RSSItemSelectedEvent], event: RSSItemSelectedEvent): Unit*/(rssItem : RSSItem) = {
 
-    val rssItem = event.rssItem
+    //val rssItem = event.rssItem
     val args = new Bundle()
 
     args.putString("title", rssItem.title)
