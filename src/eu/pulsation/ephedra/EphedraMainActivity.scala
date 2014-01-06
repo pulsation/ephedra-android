@@ -30,7 +30,7 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
   }
 
   lazy val readRSSItems = {
-    PublishSubject[RSSItem/*ReadEvent*/]()
+    PublishSubject[RSSItem]()
   }
 
   /**
