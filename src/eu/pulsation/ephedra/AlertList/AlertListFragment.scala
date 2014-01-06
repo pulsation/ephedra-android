@@ -7,7 +7,7 @@ import ExecutionContext.Implicits.global
 
 import android.app.{ListFragment}
 import android.os.Bundle
-import android.view.{Menu, View}
+import android.view.View
 import android.widget.{Toast, ListView}
 import android.util.Log
 
@@ -32,7 +32,7 @@ class AlertListFragment extends ListFragment {
   lazy val rssStoredData = new RSSStoredData(activity)
 
   // The RSS item that has been selected
-  lazy val selectedRSSItem = PublishSubject[RSSItem]() /*new SelectedRSSItem()*/
+  lazy val selectedRSSItem = PublishSubject[RSSItem]()
 
   // The RSS items that have been displayed in the list, not to be notified next time
   lazy val viewedRSSItems = new ViewedRSSItems()
@@ -75,12 +75,6 @@ class AlertListFragment extends ListFragment {
           .show()
       }
     }
-   /*
-    activity match {
-      case mainActivity: EphedraMainActivity => selectedRSSItem.subscribe(item => mainActivity.itemSelected(item))
-      case _ => Log.e(TAG, "Could not subscribe to main activity")
-    }
-    */
   }
 
   override def onListItemClick(lv: ListView, v: View, position: Int, id: Long) {
@@ -88,7 +82,6 @@ class AlertListFragment extends ListFragment {
       case item: RSSItem => item
       case _ => throw new ClassCastException
     }
-
     selectedRSSItem.onNext(rssItem)
   }
 }

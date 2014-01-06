@@ -1,15 +1,13 @@
 package eu.pulsation.ephedra
 
-import android.app.{Activity, Fragment, FragmentTransaction}
+import android.app.{Activity, Fragment}
 import android.os.Bundle
 import android.view.{Menu, MenuItem}
 import android.util.Log
 
 import rx.lang.scala.subjects.PublishSubject
 
-import scala.collection.mutable.{Subscriber, Publisher}
-
-class EphedraMainActivity extends Activity /*with Subscriber[RSSItemSelectedEvent, Publisher[RSSItemSelectedEvent]]*/ {
+class EphedraMainActivity extends Activity {
 
   final private val TAG="eu.pulsation.ephedra.EphedraMainActivity"
 
@@ -103,7 +101,7 @@ class EphedraMainActivity extends Activity /*with Subscriber[RSSItemSelectedEven
   }
 
   // An alert has been selected in the list.
-  /*override*/ def itemSelected/*notify(pub: Publisher[RSSItemSelectedEvent], event: RSSItemSelectedEvent): Unit*/(rssItem : RSSItem) = {
+  def itemSelected(rssItem : RSSItem) = {
 
     //val rssItem = event.rssItem
     val args = new Bundle()

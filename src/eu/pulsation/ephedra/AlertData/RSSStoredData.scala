@@ -6,8 +6,7 @@ import scala.collection.mutable.{Subscriber, Publisher}
 
 import android.content.Context
 
-class RSSStoredData(context: Context) extends ViewedRSSItemsSubscriber
-                                    /*with ReadRSSItemsSubscriber*/ {
+class RSSStoredData(context: Context) extends ViewedRSSItemsSubscriber {
 
   final val TAG : String = "eu.pulsation.ephedra.Preferences"
 
