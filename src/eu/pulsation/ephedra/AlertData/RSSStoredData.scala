@@ -6,7 +6,7 @@ import scala.collection.mutable.{Subscriber, Publisher}
 
 import android.content.Context
 
-class RSSStoredData(context: Context) extends ViewedRSSItemsSubscriber {
+class RSSStoredData(context: Context) /*extends ViewedRSSItemsSubscriber*/ {
 
   final val TAG : String = "eu.pulsation.ephedra.Preferences"
 
@@ -64,8 +64,8 @@ class RSSStoredData(context: Context) extends ViewedRSSItemsSubscriber {
    */
 
 
-  override def notifyViewedRSSItems(pub: Publisher[RSSItemsViewedEvent], event: RSSItemsViewedEvent) {
-    addViewedRSSEntries(event.rssItems.map(item => item.guid).toSet)
+  /*override*/ def notifyViewedRSSItems(/*pub: Publisher[RSSItemsViewedEvent], event: RSSItemsViewedEvent*/rssItems : List[RSSItem]) {
+    addViewedRSSEntries(/*event.*/rssItems.map(item => item.guid).toSet)
   }
 
 
