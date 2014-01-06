@@ -103,7 +103,6 @@ class EphedraMainActivity extends Activity {
   // An alert has been selected in the list.
   def itemSelected(rssItem : RSSItem) = {
 
-    //val rssItem = event.rssItem
     val args = new Bundle()
 
     args.putString("title", rssItem.title)

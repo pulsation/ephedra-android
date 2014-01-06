@@ -2,11 +2,10 @@ package eu.pulsation.ephedra
 
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._
-import scala.collection.mutable.{Subscriber, Publisher}
 
 import android.content.Context
 
-class RSSStoredData(context: Context) /*extends ViewedRSSItemsSubscriber*/ {
+class RSSStoredData(context: Context) {
 
   final val TAG : String = "eu.pulsation.ephedra.Preferences"
 
@@ -62,19 +61,16 @@ class RSSStoredData(context: Context) /*extends ViewedRSSItemsSubscriber*/ {
   /**
    * Some RSS items have been viewed. We must store which ones.
    */
-
-
-  /*override*/ def notifyViewedRSSItems(/*pub: Publisher[RSSItemsViewedEvent], event: RSSItemsViewedEvent*/rssItems : List[RSSItem]) {
-    addViewedRSSEntries(/*event.*/rssItems.map(item => item.guid).toSet)
+  def notifyViewedRSSItems(rssItems : List[RSSItem]) {
+    addViewedRSSEntries(rssItems.map(item => item.guid).toSet)
   }
 
 
   /**
    * Some RSS items have been read. We must store which ones.
    */
-
-  /*override*/ def notifyReadRSSItem(/*pub: Publisher[RSSItemReadEvent], event: RSSItemReadEvent*/ rssItem: RSSItem) {
-    addReadRSSEntries(Set(/*event.*/rssItem.guid))
+  def notifyReadRSSItem(rssItem: RSSItem) {
+    addReadRSSEntries(Set(rssItem.guid))
   }
 
 }
