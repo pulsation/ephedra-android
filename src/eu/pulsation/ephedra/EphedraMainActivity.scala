@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.{Menu, MenuItem}
 import android.util.Log
 
+import rx.lang.scala.subjects.PublishSubject
+
 import scala.collection.mutable.{Subscriber, Publisher}
 
 class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent, Publisher[RSSItemSelectedEvent]] {
@@ -28,7 +30,7 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
   }
 
   lazy val readRSSItems = {
-    new ReadRSSItems()
+    PublishSubject[RSSItem/*ReadEvent*/]()
   }
 
   /**
@@ -62,7 +64,7 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
     super.onCreate(savedInstanceState)
 
     // Subscribe to item read event
-    readRSSItems.subscribe(rssStoredData.readRSSItemsSubscriber)
+    readRSSItems.subscribe(item => { rssStoredData.notifyReadRSSItem(item) })
 
     // Display notifications
     ephedraAlarmHelper.startAlarm()
@@ -113,6 +115,6 @@ class EphedraMainActivity extends Activity with Subscriber[RSSItemSelectedEvent,
 
     switchToFragment(alertDetailsFragment)
 
-    readRSSItems.add(rssItem)
+    readRSSItems.onNext(rssItem)
   }
 }
