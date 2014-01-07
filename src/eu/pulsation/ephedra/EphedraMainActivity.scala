@@ -29,25 +29,14 @@ class EphedraMainActivity extends Activity {
 
   final private val TAG="eu.pulsation.ephedra.EphedraMainActivity"
 
-  lazy val rssStoredData = {
-    new RSSStoredData(this) 
-  }
+  lazy val alertListFragment =  new AlertListFragment()
+  lazy val alertDetailsFragment =  new AlertDetailsFragment()
+  lazy val aboutFragment =  new AboutFragment()
 
-  lazy val alertListFragment = {
-    new AlertListFragment()
-  }
+  lazy val rssStoredData =  new RSSStoredData(this)
 
-  lazy val alertDetailsFragment = {
-    new AlertDetailsFragment()
-  }
-
-  lazy val aboutFragment = {
-    new AboutFragment()
-  }
-
-  lazy val readRSSItems = {
-    PublishSubject[RSSItem]()
-  }
+  // PubSub for RSS items that have already been read.
+  lazy val readRSSItems =  PublishSubject[RSSItem]()
 
   /**
    * Switch from a fragment to another
@@ -90,7 +79,7 @@ class EphedraMainActivity extends Activity {
     if (findViewById(R.id.fragment_container) != null) {
       // Fragment container exists.
       if (savedInstanceState == null) {
-        // We're not beeing restored from a previous state.
+        // We're not being restored from a previous state.
         alertListFragment.selectedRSSItem.subscribe(item => this.itemSelected(item))
         displayInitialFragment(alertListFragment)
       }
