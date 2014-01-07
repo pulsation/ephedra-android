@@ -23,7 +23,7 @@ import scala.concurrent._
 import scala.language.implicitConversions
 import ExecutionContext.Implicits.global
 
-import android.app.{ListFragment}
+import android.app.ListFragment
 import android.os.Bundle
 import android.view.View
 import android.widget.{Toast, ListView}

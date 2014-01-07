@@ -19,9 +19,9 @@
 package eu.pulsation.ephedra
 
 import java.util.{Date}
-import android.content.{Context, BroadcastReceiver} 
+import android.content.Context
 import android.app.{AlarmManager, PendingIntent} 
-import android.content.{Intent, IntentFilter}
+import android.content.Intent
 import android.util.Log
 
 class AlarmHelper(context: Context) {

@@ -20,7 +20,6 @@ package eu.pulsation.ephedra
 
 import android.content.{BroadcastReceiver, Context, Intent}
 import android.util.Log
-import scala.util.matching.Regex
 import scala.concurrent._
 import ExecutionContext.Implicits.global
 import scala.language.implicitConversions

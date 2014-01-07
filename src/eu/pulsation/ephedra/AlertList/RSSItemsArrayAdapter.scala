@@ -18,8 +18,6 @@
 
 package eu.pulsation.ephedra
 
-import scala.collection.JavaConversions._
-
 import android.widget.{ArrayAdapter,TextView}
 import android.view.{View, ViewGroup}
 import android.content.Context
