@@ -24,6 +24,9 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           >
+
+      <TextView android:text = "@+string/about_license_title" android:layout_width = "match_parent" android:layout_height = "wrap_content" />
+      <TextView android:text = "@+string/about_license" android:layout_width = "match_parent" android:layout_height = "wrap_content" />
       <TextView android:text = "@+string/about_personal_data_title" android:layout_width = "match_parent" android:layout_height = "wrap_content" />
       <TextView android:text = "@+string/about_personal_data_details" android:layout_width = "match_parent" android:layout_height = "wrap_content" />
 

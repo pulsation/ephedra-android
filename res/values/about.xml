@@ -66,5 +66,11 @@
   <string name="about_data_use_trademarks">
     <li>L’utilisation des marques déposées utilisées sur ce site sur tout autre support ou réseau est interdite.</li>
   </string>
+  <string name="about_license_title">
+      <u>Licence</u>
+  </string>
+  <string name="about_license">
+    Le présent logiciel est distribué selon les termes de la licence GPLv3, qu\'il est possible de consulter sur le site <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.
+  </string>
 </resources>
 
